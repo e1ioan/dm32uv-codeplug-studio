@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DM‑32UV Codeplug Studio v6</title>
+<style>
+:root{color-scheme:light;--bg:#f6f8fb;--card:#fff;--ink:#192739;--muted:#66768a;--line:#dce4ef;--accent:#1766a9;--accent2:#eaf4ff;--warn:#fffaec;--bad:#ad3b36;--shadow:0 12px 32px #1527390b;--row:#f9fbfe;--edited:#fff1c5;--edited-ink:#7c5600}
+[data-theme="dark"]{color-scheme:dark;--bg:#111821;--card:#1a2633;--ink:#eef5fb;--muted:#9cacc0;--line:#324153;--accent:#7cc1ff;--accent2:#24394d;--warn:#403921;--bad:#f58c85;--shadow:none;--row:#1d2c3a;--edited:#403821;--edited-ink:#ffd884}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.48 system-ui,-apple-system,Segoe UI,Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #72b5ff;outline-offset:1px}a{color:var(--accent)}.shell{max-width:1550px;padding:24px 26px;margin:auto}.head{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}.brand{display:flex;gap:13px;align-items:center}.logo{width:40px;height:40px;display:grid;place-items:center;border-radius:11px;background:var(--accent);color:white;font-size:22px;font-weight:800}.brand h1{font-size:20px;line-height:1.1;letter-spacing:-.5px;margin:0}.brand small{color:var(--muted)}.actions,.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.btn{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:9px 13px;white-space:nowrap}.btn:hover:not(:disabled){border-color:var(--accent);background:var(--accent2)}.btn.primary{background:var(--accent);color:white;border-color:var(--accent)}.btn.primary:hover{filter:brightness(.95)}.btn.danger{color:var(--bad)}.btn.small{padding:5px 9px;font-size:12px}.btn.ghost{border:0;background:transparent}.panel{background:var(--card);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}.filebar{display:flex;align-items:center;gap:16px;padding:14px 18px;margin:20px 0 16px;flex-wrap:wrap}.grow{flex:1}.filename{font-weight:700;overflow-wrap:anywhere}.muted{color:var(--muted)}.stats{display:flex;gap:18px;flex-wrap:wrap}.stat{font-size:12px;color:var(--muted)}.stat b{color:var(--ink);font-size:15px;font-variant-numeric:tabular-nums}.callout{padding:12px 15px;background:var(--warn);border:1px solid var(--line);border-radius:9px;color:var(--ink);font-size:13px}.tabs{display:flex;gap:5px;border-bottom:1px solid var(--line);margin-top:22px;padding:0 4px}.tab{border:0;background:transparent;color:var(--muted);padding:12px 19px;border-bottom:3px solid transparent;font-weight:650}.tab.active{color:var(--accent);border-color:var(--accent)}.content{padding:18px 0}.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}.bar h2{font-size:17px;margin:0}.input,.field{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:7px;padding:7px 9px;width:100%;min-width:0}.search{width:min(290px,100%)}.table-scroll{overflow-x:auto;max-height:none;min-height:0}.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}.tbl th{position:sticky;top:0;background:var(--row);z-index:2;color:var(--muted);text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:7px 7px;vertical-align:middle}.tbl td input,.tbl td select{min-width:68px;padding:6px;border:1px solid transparent;background:transparent;color:var(--ink);border-radius:5px;max-width:100%}.tbl td input:hover,.tbl td select:hover,.tbl td input:focus,.tbl td select:focus{background:var(--card);border-color:var(--line)}.tbl tr:hover td{background:var(--row)}.tbl tr.selected td,.tbl tr.selected:hover td{background:var(--accent2)}.tbl tr.selected td:first-child{box-shadow:inset 3px 0 var(--accent)}.tbl tr.edited td,.tbl tr.edited:hover td{background:var(--edited)}.tbl tr.edited.selected td,.tbl tr.edited.selected:hover td{background:linear-gradient(90deg,var(--accent2) 0 12px,var(--edited) 12px)}.tbl tr.edited td input,.tbl tr.edited td select{color:var(--ink)}.tbl td input[type="checkbox"]{min-width:0;width:17px;height:17px;accent-color:var(--accent);cursor:pointer}.tbl th input[type="checkbox"]{width:17px;height:17px;accent-color:var(--accent);cursor:pointer}.tbl td .mono,.mono{font:12px ui-monospace,SFMono-Regular,Consolas,monospace}.center{text-align:center}.chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:6px;background:var(--row);padding:3px 7px;white-space:nowrap;font-size:12px}.chip.blue{background:var(--accent2);color:var(--accent)}.table-footer{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;color:var(--muted);font-size:12px;flex-wrap:wrap}.lists{display:grid;grid-template-columns:minmax(240px,335px) minmax(0,1fr);gap:15px}.listnav{overflow:visible}.listitem{display:flex;gap:10px;width:100%;text-align:left;padding:11px 15px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);align-items:center}.listitem:hover{background:var(--row)}.listitem.active{background:var(--accent2);color:var(--accent);box-shadow:inset 3px 0 var(--accent)}.listitem.edited:not(.active),.member.edited,.candidate.edited{background:var(--edited)}.listitem.edited.active{box-shadow:inset 4px 0 var(--edited-ink);background:var(--edited);color:var(--ink)}.listitem strong{font-weight:650}.listitem small{display:block;color:var(--muted)}.editor{padding:20px;min-height:560px}.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.editor h3{font-size:14px;margin:17px 0 9px}.memberlist,.availablelist{border:1px solid var(--line);border-radius:8px;overflow:visible;min-height:70px}.member,.candidate{display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line);font-size:12px}.member:last-child,.candidate:last-child{border-bottom:0}.member small,.candidate small{color:var(--muted)}.member-name{flex:1;min-width:0}.member button{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:5px;padding:2px 6px}.member button:hover{background:var(--accent2)}.member .x{color:var(--bad)}.candidate{cursor:pointer}.candidate:hover{background:var(--row)}.candidate input{accent-color:var(--accent)}.listhead{display:flex;justify-content:space-between;align-items:center;gap:8px}.hint{font-size:12px;color:var(--muted)}.footnote{padding:20px 0 10px;color:var(--muted);font-size:12px}.empty{padding:70px 15px;text-align:center;max-width:710px;margin:60px auto}.empty h2{font-size:25px;margin:9px 0}.empty p{line-height:1.7}.drop{border:2px dashed var(--line);border-radius:11px;margin-top:22px;padding:22px;cursor:pointer}.drop.over{border-color:var(--accent);background:var(--accent2)}.hide{display:none!important}.modal{position:fixed;inset:0;background:#04101ec9;z-index:10;display:flex;align-items:center;justify-content:center;padding:15px}.dialog{width:min(670px,100%);max-height:94vh;overflow:auto;background:var(--card);border-radius:12px;padding:24px;border:1px solid var(--line);box-shadow:0 30px 90px #0005}.dialog h2{margin:0 0 16px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.formcell label{display:block;margin-bottom:5px;color:var(--muted);font-size:12px}.dialogfoot{display:flex;justify-content:flex-end;gap:9px;margin-top:18px;border-top:1px solid var(--line);padding-top:15px}.flash{position:fixed;right:18px;bottom:18px;background:var(--ink);color:var(--card);padding:10px 16px;border-radius:8px;z-index:20;max-width:420px;box-shadow:0 10px 30px #0004}.helptext{line-height:1.7;font-size:13px}.warning-text{color:var(--bad)}.check-inline{display:flex;gap:7px;align-items:center}.check-inline input{accent-color:var(--accent)}.tag{background:var(--accent2);padding:2px 7px;border-radius:5px;color:var(--accent);font-size:11px}.editmark{display:inline-block;border-radius:5px;padding:1px 5px;margin-left:5px;font-size:10px;font-weight:700;color:var(--edited-ink);background:var(--edited)}.pagesize{display:inline-flex;gap:6px;align-items:center}.pagesize select{width:auto;min-width:74px}.focusbar{display:none;align-items:center;justify-content:flex-end;gap:9px;flex-wrap:wrap;margin-bottom:10px}.focus .focusbar{display:flex}.focus .head,.focus .filebar,.focus #caution,.focus .tabs,.focus .footnote{display:none!important}.tabs{flex-wrap:wrap}.focus .shell{max-width:none;padding:14px 22px}.focus .content{padding:6px 0}.footer-compact{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.code{font-family:Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:880px){.shell{padding:13px}.lists{grid-template-columns:1fr}.listnav{max-height:none}.split{grid-template-columns:1fr}.table-scroll{max-height:none}.formgrid{grid-template-columns:1fr}.head{align-items:flex-start}.actions{width:100%}}
+.fieldline{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.fieldline label{min-width:150px;color:var(--muted)}.fieldline .input{max-width:290px}.extrarow{padding:11px;border-bottom:1px solid var(--line)}.member-chip{display:inline-flex;align-items:center;padding:4px 8px;border-radius:6px;background:var(--accent2);margin:3px}.rx-grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:15px}@media(max-width:800px){.rx-grid{grid-template-columns:1fr}} </style></head><body>
+<div class="shell">
+ <header class="head"><div class="brand"><div class="logo">D</div><div><h1>DM‑32UV Codeplug Studio <span style="font-size:12px;font-weight:500;color:var(--muted)">v6</span></h1><small>Local .data editor · no radio connection</small></div></div>
+ <div class="actions"><button class="btn" id="openBtn">Open .data</button><button class="btn" id="undoBtn" disabled>Undo</button><button class="btn" id="resetBtn" disabled>Reset</button><button class="btn" id="diffBtn" disabled>Changes</button><button class="btn primary" id="saveBtn" disabled>Download .data</button><button class="btn" id="themeBtn" title="Toggle light/dark">◐</button></div></header>
+ <input id="file" type="file" accept=".data,application/octet-stream" hidden><input id="csvFile" type="file" accept=".csv,text/csv" hidden>
+ <div id="loaded" class="hide">
+  <div class="focusbar" id="focusBar"><span class="hint">Focused view</span><select id="focusView" class="input" style="width:auto"><option value="channels">Channels</option><option value="zones">Zones</option><option value="scans">Scan lists</option><option value="talkgroups">Talk Groups</option><option value="rxgroups">RX Group Lists</option><option value="keys">Key Settings</option></select><button class="btn small primary" id="focusSave">Download .data</button><button class="btn small" id="focusExit">Show header</button></div>
+  <div class="panel filebar"><div class="grow"><div class="filename" id="fileName"></div><div class="muted" id="fileDetail"></div></div><div class="stats" id="stats"></div></div>
+  <div class="callout" id="caution">Unknown binary fields are preserved. Newly created scan lists and changed scan members should be verified by reopening the exported file in Baofeng CPS before use.</div>
+  <nav class="tabs"><button class="tab active" data-tab="channels">Channels</button><button class="tab" data-tab="zones">Zones</button><button class="tab" data-tab="scans">Scan lists</button><button class="tab" data-tab="talkgroups">Talk Groups</button><button class="tab" data-tab="rxgroups">RX Group Lists</button><button class="tab" data-tab="keys">Key Settings</button><button class="tab" data-tab="about">About / safety</button><button class="btn small" id="focusToggle" style="margin-left:auto;align-self:center">Hide header · Focus mode</button></nav>
+  <main class="content" id="main"></main>
+ </div>
+ <div class="empty panel" id="welcome"><div style="font-size:42px">▤</div><h2>Build your codeplug without fighting CPS</h2><p>Load a Baofeng DM‑32UV <b>.data</b> file and edit channels, zone membership and scan lists in one place. All work stays on your computer. Saving patches the original image; it does not recreate undocumented settings.</p><div class="drop" id="drop"><b>Choose a .data file</b> or drag it here<br><small class="muted">Supported format: DM32.NRF.01.049 · 659,456 bytes</small></div></div>
+ <footer class="footnote">Unofficial reverse-engineered editor · Not affiliated with Baofeng · Always retain your original .data file and validate changes in the manufacturer's CPS.</footer>
+</div><div id="modalRoot"></div><div id="toast" class="flash hide" role="status"></div><script>
+/* DM-32UV CPS .data byte-preserving editor, layout DM32.NRF.01.049.
+ * No dependencies; works in browsers and Node 18+.
+ * Unsupported/opaque bytes are never synthesized during ordinary edits.
+ * Source: DM32-Protocol-Spec/05-DATA-STRUCTURES.md + 06-ENCODING.md
+ * IMPORTANT: CPS disk logical block ID is at last byte of each 4096-byte page.
+ */
+(function(root, factory) {
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.DM32Core = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function() {
+  'use strict';
+  const PAGE=4096, CHANNEL_SIZE=48, ZONE_SIZE=145, SCAN_SIZE=57;
+  const MAX_CHANNEL=3998, MAX_ZONE=250, MAX_SCAN=32;
+  // Updated DM32 reverse engineering: channel byte +0x19 bits 0..5 are the
+  // scan-list ID (0=None; 1..32 in CPS). Bits 6/7 are independent flags.
+  const SCAN_INDEX_MASK=0x3f;
+  const SUPPORTED='DM32.NRF.01.049';
+  const CTCSS=[67,69.3,71.9,74.4,77,79.7,82.5,85.4,88.5,91.5,94.8,97.4,100,103.5,107.2,110.9,114.8,118.8,123,127.3,131.8,136.5,141.3,146.2,151.4,156.7,159.8,162.2,165.5,167.9,171.3,173.8,177.3,179.9,183.5,186.2,189.9,192.8,196.6,199.5,203.5,206.5,210.7,218.1,225.7,229.1,233.6,241.8,250.3,254.1];
+  const DCS='023 025 026 031 032 036 043 047 051 053 054 065 071 072 073 074 114 115 116 122 125 131 132 134 143 145 152 155 156 162 165 172 174 205 212 223 225 226 243 244 245 246 251 252 255 261 263 265 266 271 274 306 311 315 325 331 332 343 346 351 356 364 365 371 411 412 413 423 431 432 445 446 452 454 455 462 464 465 466 503 506 516 523 526 532 546 565 606 612 624 627 631 632 654 662 664 703 712 723 731 732 734 743 754'.split(' ');
+  function invariant(x,m){if(!x)throw Error(m)}
+  function readLE(b,p){return b[p]|(b[p+1]<<8)}
+  function writeLE(b,p,n){invariant(Number.isInteger(n)&&n>=0&&n<65536,'Invalid 16-bit value');b[p]=n&255;b[p+1]=n>>8}
+  function asBytes(input){return input instanceof Uint8Array?new Uint8Array(input):new Uint8Array(input)}
+  function str(b,p,length){let s='';for(let i=0;i<length;i++){let v=b[p+i];if(v===0||v===255)break;s+=v>=32&&v<127?String.fromCharCode(v):'�'}return s}
+  function setStr(b,p,len,s){invariant(typeof s==='string'&&/^[\x20-\x7E]*$/.test(s),'Names must contain printable ASCII only');invariant(s.length<=len,'Name too long (maximum '+len+' characters)');for(let i=0;i<len;i++) b[p+i]=i<s.length?s.charCodeAt(i):(i===s.length?0:255)}
+  function decodeFreq(b,p){if(b.slice(p,p+4).every(x=>x===255))return null;let value=0;for(let i=3;i>=0;i--){let x=b[p+i],hi=x>>4,lo=x&15;invariant(hi<=9&&lo<=9,'Invalid BCD frequency at 0x'+p.toString(16));value=value*100+hi*10+lo;}return value/100000}
+  function encodeFreq(b,p,s,allowNone=false){if(s===null||s===''){invariant(allowNone,'RX frequency required');b.fill(255,p,p+4);return}
+    let n=typeof s==='number'?Math.round(s*1e5):parseMHz(s); invariant(n>0&&n<=99999999,'Frequency must be between 0 and 999.99999 MHz');
+    let digs=String(n).padStart(8,'0');for(let i=0;i<4;i++)b[p+i]=(Number(digs[6-i*2])<<4)|Number(digs[7-i*2]); }
+  function parseMHz(v){let s=String(v).trim();invariant(/^\d{1,3}(?:\.\d{1,5})?$/.test(s),'Use a frequency such as 145.50000 (max five decimals)');let [a,d='']=s.split('.');let n=Number(a)*100000+Number(d.padEnd(5,'0'));invariant(n>0&&n<=99999999,'Invalid frequency');return n}
+  function decodeTone(b,p){let a=b[p],z=b[p+1];if((a===255&&z===255)||(a===0&&z===0))return 'None';if(z>=0x80){let h=z&15,t=a>>4,o=a&15; if(h>7||t>7||o>7) return 'Unknown';return 'D'+h+t+o+(z>=0xC0?'I':'N')}
+    let digits=[z>>4,z&15,a>>4,a&15];if(digits.some(x=>x>9))return 'Unknown';return String(((digits[0]*1000+digits[1]*100+digits[2]*10+digits[3])/10).toFixed(1));}
+  function encodeTone(b,p,val){let s=String(val??'None').trim();if(s==='None'){b[p]=255;b[p+1]=255;return}const m=s.match(/^D([0-7]{3})([NI])$/i);if(m){invariant(DCS.includes(m[1]),'Unknown DCS code');b[p]=(Number(m[1][1])<<4)|Number(m[1][2]);b[p+1]=(m[2].toUpperCase()==='I'?0xC0:0x80)|Number(m[1][0]);return}
+    invariant(/^\d{2,3}(?:\.\d)?$/.test(s),'Invalid CTCSS tone');const n=Math.round(Number(s)*10);invariant(CTCSS.some(x=>Math.round(x*10)===n),'CTCSS tone not standard');const d=String(n).padStart(4,'0');b[p]=(Number(d[2])<<4)|Number(d[3]);b[p+1]=(Number(d[0])<<4)|Number(d[1]);}
+  function bset(b,p,mask,v){b[p]=(b[p]&(~mask&255))|(v&mask)}
+  function pageMap(b){const m=new Map();for(let o=0;o<b.length;o+=PAGE){let id=b[o+PAGE-1];if(id===0||id===255)continue;invariant(!m.has(id),'Duplicate logical page ID 0x'+id.toString(16));m.set(id,o)}return m}
+  class Codeplug {
+    constructor(input){this.original=asBytes(input);this.bytes=this.original.slice();this.audit=[];this.checkLayout()}
+    checkLayout(){const b=this.bytes;invariant(b.length===659456,'Unsupported file length '+b.length+' (expected 659456 for this CPS image)');this.firmware=str(b,0x30,32);invariant(this.firmware===SUPPORTED,'Unsupported firmware family: '+this.firmware+' (requires '+SUPPORTED+')');this.pages=pageMap(b);for(const x of [0x11,0x12,0x5c])invariant(this.pages.has(x),'Missing logical block 0x'+x.toString(16));const nc=this.channelCount,nz=this.zoneCount,ns=this.scanCount;invariant(nc>=1&&nc<=MAX_CHANNEL,'Suspicious channel count '+nc);invariant(nz>=0&&nz<=MAX_ZONE,'Suspicious zone count '+nz);invariant(ns>=0&&ns<=MAX_SCAN,'Suspicious scan count '+ns);for(let i=1;i<=nc;i++)this.chOffset(i);for(let i=1;i<=nz;i++)this.zoneOffset(i);for(let i=1;i<=ns;i++)this.scanOffset(i);}
+    block(id){let v=this.pages.get(id);invariant(v!==undefined,'Missing block ID 0x'+id.toString(16));return v}
+    get channelCount(){return readLE(this.bytes,this.block(0x12))} get zoneCount(){return this.bytes[this.block(0x5c)]} get scanCount(){return this.bytes[this.block(0x11)]}
+    chOffset(n){invariant(Number.isInteger(n)&&n>=1&&n<=MAX_CHANNEL,'Bad channel number '+n);let bank,local;if(n<=84){bank=0x12;local=16+(n-1)*48}else{bank=0x13+Math.floor((n-85)/85);local=((n-85)%85)*48}invariant(local+48<=4095,'Channel overlaps page ID');return this.block(bank)+local}
+    zoneOffset(n){invariant(Number.isInteger(n)&&n>=1&&n<=MAX_ZONE,'Bad zone number');let bank=0x5c+Math.floor((n-1)/28),index=(n-1)%28,local=(bank===0x5c?16:0)+index*145;invariant(local+145<=4095,'Zone overlaps page ID');return this.block(bank)+local}
+    scanOffset(n){invariant(Number.isInteger(n)&&n>=1&&n<=MAX_SCAN,'Bad scan list number');const local=1+(n-1)*57;invariant(local+57<=4095,'Scan overlaps page ID');return this.block(0x11)+local}
+    channel(n){invariant(n<=this.channelCount,'Channel not present');const p=this.chOffset(n),b=this.bytes,mode=b[p+24]>>4,digital=!!(mode&1);return {id:n,name:str(b,p,16),rx:decodeFreq(b,p+16),tx:decodeFreq(b,p+20),mode,power:(b[p+24]>>1)&3,txBlocked:!!(b[p+24]&8),bandwidth:(b[p+25]&128)?25:12.5,scanAdd:!!(b[p+25]&64),scanIndex:b[p+25]&SCAN_INDEX_MASK,squelch:b[p+28]>>4,rxTone:decodeTone(b,p+33),txTone:decodeTone(b,p+35),digital,color: digital?(b[p+29]&15):null,timeslot:digital?((b[p+29]&16)?2:1):null,vox:!digital&&!!(b[p+29]&128),scramble:!digital&&!!(b[p+29]&64),compander:!digital&&!!(b[p+29]&32),rxGroup:digital?(b[p+31]&63):null,radioIdIndex:b[p+43],offset:p};}
+    zone(n){invariant(n<=this.zoneCount,'Zone missing');const p=this.zoneOffset(n),b=this.bytes;const count=b[p+16];invariant(count<=64,'Invalid zone member count '+count+' in zone '+n);const members=[];for(let i=0;i<count;i++){const v=readLE(b,p+17+i*2);if(v)members.push(v)}return{id:n,name:str(b,p,16),members,offset:p}}
+    scan(n){invariant(n<=this.scanCount,'Scan missing');const p=this.scanOffset(n),b=this.bytes,members=[];for(let i=0;i<15;i++){let v=readLE(b,p+26+i*2);if(v&&v!==65535)members.push(v)}return{id:n,name:str(b,p,11),members,countRaw:b[p+11],offset:p,opaque:b.slice(p+21,p+26)}}
+    channels(){return Array.from({length:this.channelCount},(_,i)=>this.channel(i+1))}zones(){return Array.from({length:this.zoneCount},(_,i)=>this.zone(i+1))}scans(){return Array.from({length:this.scanCount},(_,i)=>this.scan(i+1))}
+    change(note,fn){const before=this.bytes.slice();try{fn();this.validate()}catch(e){this.bytes=before;throw e}let diff=0;for(let i=0;i<this.bytes.length;i++)if(before[i]!==this.bytes[i])diff++;if(diff)this.audit.push({note,bytes:diff});return diff}
+    setChannel(n,patch){return this.setChannels([n],patch)}
+    // One validated binary transaction for all selected channels. Every target
+    // receives only explicitly requested fields; other fields/opaque bytes remain
+    // unchanged. If any target is invalid (e.g. DMR vs analog), rollback all.
+    setChannels(ids,patch){
+      invariant(Array.isArray(ids)&&ids.length>0,'Select at least one channel');
+      const unique=[...new Set(ids)];
+      for(const n of unique)invariant(Number.isInteger(n)&&n>=1&&n<=this.channelCount,'Channel not present: #'+n);
+      invariant(patch&&typeof patch==='object'&&!Array.isArray(patch),'Invalid channel patch');
+      if(!Object.keys(patch).length)return 0;
+      const needsChange=unique.some(n=>Object.entries(patch).some(([k,v])=>String(this.channel(n)[k])!==String(v)));
+      if(!needsChange)return 0;
+      return this.change(unique.length===1?'Channel #'+unique[0]:'Bulk edit '+unique.length+' channels ('+Object.keys(patch).join(', ')+')',()=>{
+        for(const n of unique)this.writeChannelPatch(n,patch);
+      });
+    }
+    writeChannelPatch(n,patch){const current=this.channel(n);patch=Object.fromEntries(Object.entries(patch).filter(([k,v])=>String(current[k])!==String(v)));const p=this.chOffset(n),b=this.bytes;for(const [field,val] of Object.entries(patch)){
+      if(field==='name')setStr(b,p,16,val);
+      else if(field==='rx')encodeFreq(b,p+16,val,false);
+      else if(field==='tx')encodeFreq(b,p+20,val,true);
+      else if(field==='mode'){invariant([0,1,2,3].includes(+val),'Invalid mode');invariant(((b[p+24]>>4)&1)===(+val&1),'Cannot convert analog to DMR or vice versa without updating contact/reference tables');bset(b,p+24,240,(+val)<<4)}
+      else if(field==='power'){invariant([0,1,2].includes(+val),'Invalid power');bset(b,p+24,6,(+val)<<1)}
+      else if(field==='txBlocked')bset(b,p+24,8,val?8:0);
+      else if(field==='bandwidth'){invariant([12.5,25].includes(+val),'Invalid bandwidth');bset(b,p+25,128,(+val===25)?128:0)}
+      else if(field==='scanAdd')bset(b,p+25,64,val?64:0);
+      else if(field==='scanIndex'){invariant(Number.isInteger(+val)&&+val>=0&&+val<=this.scanCount&&+val<=MAX_SCAN,'Scan list must be None or an existing list (1..'+this.scanCount+')');bset(b,p+25,SCAN_INDEX_MASK,+val)}
+      else if(field==='squelch'){invariant(Number.isInteger(+val)&&+val>=0&&+val<=15,'Squelch 0..15');bset(b,p+28,240,(+val)<<4)}
+      else if(field==='rxTone'){invariant(!((b[p+24]>>4)&1),'RX tone applies only to analog channels; mixed selection not changed');encodeTone(b,p+33,val)}
+      else if(field==='txTone'){invariant(!((b[p+24]>>4)&1),'TX tone applies only to analog channels; mixed selection not changed');encodeTone(b,p+35,val)}
+      else if(field==='color'){invariant((b[p+24]>>4)&1,'Color code applies only to digital channels');invariant(Number.isInteger(+val)&&+val>=0&&+val<=15,'Color code 0..15');bset(b,p+29,15,+val)}
+      else if(field==='timeslot'){invariant((b[p+24]>>4)&1,'Timeslot applies only to digital channels');invariant([1,2].includes(+val),'Timeslot 1 or 2');bset(b,p+29,16,(+val===2)?16:0)}
+      else if(field==='vox'||field==='scramble'||field==='compander'){invariant(!((b[p+24]>>4)&1),'Analog-only flag');const mask={vox:128,scramble:64,compander:32}[field];bset(b,p+29,mask,val?mask:0)}
+      else if(field==='rxGroup'){invariant((b[p+24]>>4)&1,'Digital-only field');invariant(Number.isInteger(+val)&&+val>=0&&+val<=63,'RX group index 0..63');bset(b,p+31,63,+val)}
+      else throw Error('Unsupported channel field: '+field);
+    }}
+    setMembers(type,n,members){invariant(type==='zone'||type==='scan','Bad list type');const old=type==='zone'?this.zone(n).members:this.scan(n).members;if(Array.isArray(members)&&old.length===members.length&&old.every((x,i)=>x===members[i]))return 0;return this.change(type+' #'+n+' members',()=>this.writeMembers(type,n,members))}
+    writeMembers(type,n,members){const b=this.bytes;let max=type==='zone'?64:15,p=type==='zone'?this.zoneOffset(n):this.scanOffset(n),start=type==='zone'?17:26;invariant(n<=(type==='zone'?this.zoneCount:this.scanCount),'List missing');invariant(Array.isArray(members)&&members.length<=max,'Maximum '+max+' channels per '+type);const seen=new Set();for(const num of members){invariant(Number.isInteger(num)&&num>=1&&num<=this.channelCount,'Invalid channel number '+num);invariant(!seen.has(num),'Duplicate channel #'+num);seen.add(num)}
+      if(type==='zone')b[p+16]=members.length;else b[p+11]=members.length+1;
+      // Preserve original empty-slot representation where possible.
+      const fill=type==='scan'&&readLE(b,p+start+Math.min(max-1,members.length)*2)===65535?65535:0;
+      for(let i=0;i<max;i++)writeLE(b,p+start+i*2,i<members.length?members[i]:fill);
+    }
+    setListName(type,n,name){invariant(type==='zone'||type==='scan','Invalid list type');if((type==='zone'?this.zone(n):this.scan(n)).name===name)return 0;return this.change(type+' #'+n+' name',()=>setStr(this.bytes,type==='zone'?this.zoneOffset(n):this.scanOffset(n),type==='zone'?16:11,name))}
+    addChannel(from=1){let newID=this.channelCount+1;this.change('Add analog channel #'+newID,()=>{invariant(newID<=MAX_CHANNEL,'Channel limit reached');const src=this.channel(from);invariant(!src.digital,'Clone an analog channel only; DMR contacts live in a separate block');const b=this.bytes,p=this.chOffset(newID);invariant(b.slice(p,p+CHANNEL_SIZE).every(x=>x===0||x===255),'Next channel slot contains nonempty bytes; refusing overwrite');b.set(b.slice(src.offset,src.offset+CHANNEL_SIZE),p);setStr(b,p,16,'NEW-'+newID);bset(b,p+24,8,8);bset(b,p+25,SCAN_INDEX_MASK,0);writeLE(b,this.block(0x12),newID)});return newID}
+    // CPS disk format: channels and their DMR TX-contact selectors are positional.
+    // A channel deletion must move BOTH record arrays and remap every reference.
+    // Verified against the user's OEM CPS before/after images for deletion of #2.
+    contactOffset(n){
+      invariant(Number.isInteger(n)&&n>=1&&n<=MAX_CHANNEL,'Bad contact selector slot');
+      const perPage=2047, bank=0x42+Math.floor((n-1)/perPage), local=2*((n-1)%perPage);
+      invariant(local+2<=4095,'Contact selector overlaps page ID');
+      return this.block(bank)+local;
+    }
+    static shiftedChannel(value,removed){
+      return value===removed?0:(value>removed?value-1:value);
+    }
+    deleteChannel(n){
+      invariant(Number.isInteger(n)&&n>=1&&n<=this.channelCount,'Invalid channel number');
+      return this.change('Delete channel #'+n+' and compact references',()=>{
+        const b=this.bytes, count=this.channelCount;
+        // Save referenced arrays before mutating any records.
+        const zones=this.zones().map(z=>z.members);
+        const scans=this.scans().map(s=>s.members);
+        // Move complete 48-byte channel records across 84/85 and 85/86 page seams.
+        // Copy the raw bytes, not only the decoded subset: DMR and opaque data belong
+        // to the surviving record and must travel with it.
+        for(let id=n;id<count;id++)b.set(b.slice(this.chOffset(id+1),this.chOffset(id+1)+CHANNEL_SIZE),this.chOffset(id));
+        // OEM CPS maintains a parallel two-byte contact selector per channel in
+        // logical block 0x42 (and 0x43 beyond its page capacity).
+        for(let id=n;id<count;id++)b.set(b.slice(this.contactOffset(id+1),this.contactOffset(id+1)+2),this.contactOffset(id));
+        // Leave empty reusable slots; do not move page headers, IDs or VFO slots.
+        b.fill(0,this.chOffset(count),this.chOffset(count)+CHANNEL_SIZE);
+        b.fill(255,this.chOffset(count),this.chOffset(count)+16);
+        b.fill(0,this.contactOffset(count),this.contactOffset(count)+2);
+        writeLE(b,this.block(0x12),count-1);
+        // Member numbers are 1-based. The deleted channel is removed, and every
+        // larger channel number is decremented while the original order is kept.
+        const rebase=items=>items.filter(id=>id!==n).map(id=>id>n?id-1:id);
+        zones.forEach((items,i)=>this.writeMembers('zone',i+1,rebase(items)));
+        scans.forEach((items,i)=>this.writeMembers('scan',i+1,rebase(items)));
+        // Scan list +0x0F/+0x11/+0x13 are channel selectors in this CPS sample.
+        // Unlike the opaque +0x15..+0x19 span, keep these alongside their channel.
+        for(let i=1;i<=this.scanCount;i++){
+          const p=this.scanOffset(i);
+          for(const rel of [15,17,19]){
+            const v=readLE(b,p+rel);
+            if(v>0&&v!==65535&&v<=count)writeLE(b,p+rel,Codeplug.shiftedChannel(v,n));
+          }
+        }
+      });
+    }
+    deleteList(type,n){
+      invariant(type==='zone'||type==='scan','Invalid list type');
+      const total=type==='zone'?this.zoneCount:this.scanCount;
+      invariant(Number.isInteger(n)&&n>=1&&n<=total,'Invalid '+type+' number');
+      return this.change('Delete '+type+' #'+n+' and compact indices',()=>{
+        const b=this.bytes, size=type==='zone'?ZONE_SIZE:SCAN_SIZE;
+        const offset=id=>type==='zone'?this.zoneOffset(id):this.scanOffset(id);
+        // Preserve every surviving list's full record, including scan priorities,
+        // opaque flags, and the ordering of member channel numbers.
+        for(let id=n;id<total;id++)b.set(b.slice(offset(id+1),offset(id+1)+size),offset(id));
+        b.fill(0,offset(total),offset(total)+size);
+        b.fill(255,offset(total),offset(total)+(type==='zone'?16:11));
+        if(type==='zone'){
+          b[this.block(0x5c)]=total-1;
+          // Block header byte 1 tracks the selected zone in this image. Keep its
+          // logical selection when the table is compacted.
+          let selected=b[this.block(0x5c)+1];
+          if(selected>=1&&selected<=total){
+            if(selected===n)selected=total>1?Math.min(n,total-1):0;
+            else if(selected>n)selected--;
+            b[this.block(0x5c)+1]=selected;
+          }
+        }else{
+          b[this.block(0x11)]=total-1;
+          // Channel byte +0x19 holds a 6-bit 1-based scan list reference.
+          // Deleting list N: exact matches -> None, later references -> id - 1.
+          // Preserve bits 6 (Auto Scan) and 7 (bandwidth) on every channel.
+          for(let id=1;id<=this.channelCount;id++){
+            const p=this.chOffset(id)+25,old=b[p]&SCAN_INDEX_MASK;
+            if(old>=n){const next=old===n?0:old-1;bset(b,p,SCAN_INDEX_MASK,next)}
+          }
+        }
+      });
+    }
+    archiveChannel(n){return this.change('Archive channel #'+n,()=>{invariant(n<=this.channelCount,'Channel missing');let p=this.chOffset(n),b=this.bytes;setStr(b,p,16,'UNUSED-'+n);bset(b,p+24,8,8);bset(b,p+25,64,0);for(let i=1;i<=this.zoneCount;i++){let v=this.zone(i).members;if(v.includes(n))this.writeMembers('zone',i,v.filter(x=>x!==n))}for(let i=1;i<=this.scanCount;i++){let v=this.scan(i).members;if(v.includes(n))this.writeMembers('scan',i,v.filter(x=>x!==n))}})}
+    addZone(){const id=this.zoneCount+1;this.change('Add zone #'+id,()=>{invariant(id<=MAX_ZONE,'Zone limit reached');const p=this.zoneOffset(id),b=this.bytes;invariant(b.slice(p,p+ZONE_SIZE).every(x=>x===0||x===255),'Zone slot not empty');b.fill(0,p,p+ZONE_SIZE);setStr(b,p,16,'New Zone '+id);b[p+16]=0;b[this.block(0x5c)]=id});return id}
+    addScan(){const id=this.scanCount+1;this.change('Add scan list #'+id+' (experimental)',()=>{invariant(id<=MAX_SCAN,'Scan list limit reached');let p=this.scanOffset(id),b=this.bytes;invariant(b.slice(p,p+SCAN_SIZE).every(x=>x===0||x===255),'Scan slot not empty');const sample=this.scan(1),s=b.slice(sample.offset,sample.offset+SCAN_SIZE);b.set(s,p);setStr(b,p,11,'New Scan '+id);b[p+11]=1;b[p+14]=0;for(let i=0;i<15;i++)writeLE(b,p+26+2*i,0);b[this.block(0x11)]=id;});return id}
+    removeLast(type){const id=type==='zone'?this.zoneCount:this.scanCount;return this.deleteList(type,id)}
+    validate(){const issues=[];for(let i=1;i<=this.channelCount;i++){let c;try{c=this.channel(i)}catch(e){issues.push('Channel #'+i+': '+e.message);continue}if(c.rx===null||c.rx===0)issues.push('Channel #'+i+': missing RX frequency');if(c.scanIndex>this.scanCount)issues.push('Channel #'+i+': scan list #'+c.scanIndex+' does not exist');}
+      for(const [type,list] of [['zone',this.zones()],['scan',this.scans()]])for(const item of list){if(!item.name)issues.push(type+' #'+item.id+' has no name');for(const n of item.members){if(n<1||n>this.channelCount)issues.push(type+' #'+item.id+' references missing channel #'+n)}}
+      return issues}
+    diff(){const a=this.original,b=this.bytes,out=[];let i=0;while(i<b.length){if(a[i]===b[i]){i++;continue}let start=i;while(i<b.length&&a[i]!==b[i])i++;out.push({start,end:i-1,length:i-start,from:a.slice(start,i),to:b.slice(start,i)})}return out}
+    changedBytes(){return this.diff().reduce((a,d)=>a+d.length,0)}
+    reset(){this.bytes=this.original.slice();this.audit=[]}
+    save(){const warnings=this.validate();invariant(warnings.length===0,'Validation: '+warnings.join('; '));return this.bytes.slice()}
+    stats(){return {firmware:this.firmware,length:this.bytes.length,channels:this.channelCount,zones:this.zoneCount,scans:this.scanCount,changedBytes:this.changedBytes(),changes:this.audit.length}}
+  }
+  return {Codeplug,CTCSS,DCS,SCAN_INDEX_MASK,decodeFreq,encodeFreq,decodeTone,encodeTone,readLE,writeLE,SUPPORTED};
+});
+
+</script><script>
+/* DM32.NRF.01.049 add-on: key configuration, active TX talk groups and DMR RX groups.
+ * No external dependencies. Writes are span-precise and preserve unknown bytes.
+ * NOTE: the CPS disk's active-TG index page at 0x1b000 has no logical-page ID;
+ * never infer that by scanning for page ID 0x0B. This is gated to this fixture.
+ */
+(function(root, factory) {
+  const api=factory(typeof module==='object'&&module.exports?require('./core.js'):root.DM32Core);
+  if(typeof module==='object'&&module.exports)module.exports=api;else root.DM32Extras=api;
+})(typeof globalThis!=='undefined'?globalThis:this,function(core){
+'use strict';
+const {Codeplug,readLE,writeLE}=core, P=Codeplug.prototype;
+const FUN=['None','Power Select','Volt','Talkaround','Digital Encrypt','Call','VOX','V/M','Alarm',
+ 'One Touch Call 1','One Touch Call 2','One Touch Call 3','One Touch Call 4','One Touch Call 5','SMS',
+ 'CSV Contacts','Zone Up','Zone Down','Scan','Record Switch','Previous Record','Next Record','FM Radio',
+ 'FM Search','GPS Information','Monitor','Switch Main Channel','Lone Work','Keypad Lock',
+ 'Nuisance Channel Delete','TBST Send','APRS Send','Channel Type','Display Mode','CTC Scan',
+ 'CTC Setting','Silent Tone','Roaming','Sub-PTT','Analog Scramble Switch','One Key Scan Freq',
+ 'Flashlight','Man Down Alarm'];
+const KEY_FIELDS={sk1Short:0x87,sk1Long:0x88,sk2Short:0x89,sk2Long:0x8a,p1Short:0x8d,p1Long:0x8e,p2Short:0x8f,p2Long:0x90};
+const assert=(cond,message)=>{if(!cond)throw Error(message)};
+const u24=(b,p)=>b[p]+b[p+1]*256+b[p+2]*65536;
+const put24=(b,p,n)=>{assert(Number.isInteger(n)&&n>=0&&n<=0xffffff,'DMR ID must fit 24 bits');b[p]=n&255;b[p+1]=n>>8&255;b[p+2]=n>>16&255};
+function text(b,p,len){let s='';for(let i=0;i<len;i++){let x=b[p+i];if(x===0||x===255)break;s+=x>=32&&x<127?String.fromCharCode(x):'�'}return s}
+function name(b,p,len,s){assert(typeof s==='string'&&s.length>0&&s.length<=len&&/^[\x20-\x7E]+$/.test(s),'Name must be 1–'+len+' printable ASCII characters');const before=text(b,p,len);if(before===s)return;for(let i=0;i<len;i++)b[p+i]=i<s.length?s.charCodeAt(i):i===s.length?0:b[p+i]===0?0:255}
+function unchanged(a,b){return Object.entries(b).every(([k,v])=>String(a[k])===String(v))}
+P.keys=function(){const b=this.bytes,p=this.block(0x04),flags=b[p+0x85],result={lockKey:!!(flags&1),knobLock:!!(flags&2),sideKeyLock:!!(flags&4),lockDelay:b[p+0x86],longPress:b[p+0x93]+1};for(const [key,rel]of Object.entries(KEY_FIELDS))result[key]=b[p+rel];return result};
+P.setKeys=function(patch){assert(patch&&typeof patch==='object','Invalid keys');if(unchanged(this.keys(),patch))return 0;return this.change('Key and lock settings',()=>{const b=this.bytes,p=this.block(0x04);for(const [k,v]of Object.entries(patch)){
+  if(['lockKey','knobLock','sideKeyLock'].includes(k)){assert(typeof v==='boolean','Expected a boolean for '+k);let bit={lockKey:1,knobLock:2,sideKeyLock:4}[k];b[p+0x85]=(b[p+0x85]&~bit)|(v?bit:0)}
+  else if(k==='lockDelay'){assert(Number.isInteger(v)&&v>=5&&v<=60,'Keypad lock delay must be 5–60 seconds');b[p+0x86]=v}
+  else if(k==='longPress'){assert(Number.isInteger(v)&&v>=1&&v<=5,'Long press time is 1–5');b[p+0x93]=v-1}
+  else if(Object.hasOwn(KEY_FIELDS,k)){assert(Number.isInteger(v)&&v>=0&&v<FUN.length,'Unsupported key function');b[p+KEY_FIELDS[k]]=v}
+  else throw Error('Unknown key setting '+k)
+}})};
+// Only the four TGs from the OEM CPS index are active in the supplied file;
+// entries 5–10 are unindexed factory templates. Page 0x1B000 is untagged.
+P.tgIndexBase=function(){const p=this.block(0x44)-4096,b=this.bytes;
+ assert(p>=0&&b[p+0x10]!==undefined&&readLE(b,p)<=128,'Active talk-group index unavailable');
+ const count=readLE(b,p);assert(count<=10,'Talk-group index needs additional layout verification');
+ assert(count===0||(b[p+0x100]>=1&&b[p+0x100]<=count),'Unexpected talk-group index layout')
+ return p;
+};
+P.getTalkCount=function(){return readLE(this.bytes,this.tgIndexBase())};
+P.tgOffset=function(n){assert(Number.isInteger(n)&&n>=1&&n<=10,'Talk-group physical slot outside verified range');return this.block(0x44)+1+(n-1)*24};
+P.talkGroup=function(n){assert(n<=this.getTalkCount(),'Talk group missing');const b=this.bytes,p=this.tgOffset(n);return {id:n,name:text(b,p+1,16),dmrId:u24(b,p+18),callType:b[p+21],offset:p}};
+P.talkGroups=function(){return Array.from({length:this.getTalkCount()},(_,i)=>this.talkGroup(i+1))};
+P.rebuildTalkIndex=function(){const b=this.bytes,base=this.tgIndexBase(),items=this.talkGroups(),n=items.length;
+ writeLE(b,base,n);writeLE(b,base+2,items.filter(x=>x.callType===4).length);
+ // Byte +4 is explicitly undocumented: preserve. Only active slot bits are changed.
+ for(let i=0;i<10;i++){let o=base+0x10+(i>>3),mask=1<<(i%8);b[o]=i<n?(b[o]&~mask):(b[o]|mask)}
+ const type=x=>x.callType<<4;
+ const tables=[{start:0x100,sorted:[...items].sort((a,b)=>a.name.localeCompare(b.name,'en',{sensitivity:'variant'})||a.id-b.id)},
+  {start:0x740,sorted:[...items].sort((a,b)=>a.dmrId-b.dmrId||a.id-b.id)}];
+ for(const {start,sorted}of tables)for(let i=0;i<10;i++){
+   const off=base+start+i*2;
+   if(i<n){b[off]=sorted[i].id;b[off+1]=type(sorted[i])}
+   else if(i===n){b[off]=255;b[off+1]=255} // first inactive entry only
+ }
+};
+P.replaceRxMemberId=function(oldId,newId){for(const g of this.rxGroups())if(g.members.includes(oldId))this.writeRxMembers(g.id,g.members.flatMap(v=>v===oldId?(newId?[newId]:[]):[v]))};
+P.setTalkGroup=function(n,patch){const before=this.talkGroup(n);if(unchanged(before,patch))return 0;
+ return this.change('Talk group #'+n,()=>{let p=this.tgOffset(n),b=this.bytes;
+  if(Object.hasOwn(patch,'name'))name(b,p+1,16,patch.name);
+  if(Object.hasOwn(patch,'dmrId')){const v=Number(patch.dmrId);assert(Number.isInteger(v)&&v>0&&v<=0xffffff,'Invalid DMR ID');put24(b,p+18,v);if(v!==before.dmrId)this.replaceRxMemberId(before.dmrId,v)}
+  if(Object.hasOwn(patch,'callType')){assert([3,4,5].includes(Number(patch.callType)),'Call type must be Private / Group / All');b[p+21]=Number(patch.callType)}
+  assert(this.talkGroups().every((t,i,a)=>t.name&&t.dmrId>0&&a.findIndex(v=>v.dmrId===t.dmrId)===i),'Talk groups must have unique DMR IDs and nonempty names');
+  this.rebuildTalkIndex();
+ })};
+P.addTalkGroup=function(data){const n=this.getTalkCount()+1;assert(n<=10,'Cannot add beyond the 10 verified physical slots in this CPS image');
+ return this.change('Add talk group #'+n,()=>{const b=this.bytes,p=this.tgOffset(n);assert(b[p+21]>=0&&b[p+21]<=5,'Next talk-group slot contains unfamiliar data');
+ const v=Number(data.dmrId),call=Number(data.callType);assert(Number.isInteger(v)&&v>=1&&v<=0xffffff,'Invalid DMR ID');assert([3,4,5].includes(call),'Invalid call type');
+ name(b,p+1,16,data.name);put24(b,p+18,v);b[p+21]=call;writeLE(b,this.tgIndexBase(),n);
+ assert(this.talkGroups().every((t,i,a)=>t.name&&a.findIndex(z=>z.dmrId===t.dmrId)===i),'Duplicate DMR ID');this.rebuildTalkIndex();return n})};
+P.deleteTalkGroup=function(n){assert(n>=1&&n<=this.getTalkCount(),'Bad talk group');
+ return this.change('Delete talk group #'+n,()=>{const b=this.bytes,count=this.getTalkCount(),removed=this.talkGroup(n);assert(count>1,'Keep at least one talk group');
+ for(let i=n;i<count;i++)b.set(b.slice(this.tgOffset(i+1),this.tgOffset(i+1)+24),this.tgOffset(i));
+ // Do not destroy the now-unindexed physical entry (CPS leaves template records).
+ writeLE(b,this.tgIndexBase(),count-1);
+ for(let ch=1;ch<=this.channelCount;ch++){
+  const at=this.contactOffset(ch),old=((b[at]>>4)<<8)|b[at+1];
+  const next=old===n?0:(old>n&&old<=count?old-1:old);
+  if(old!==next){b[at]=(b[at]&15)|((next>>8)<<4);b[at+1]=next&255}
+ }
+ if(!this.talkGroups().some(g=>g.dmrId===removed.dmrId))this.replaceRxMemberId(removed.dmrId,0);
+ this.rebuildTalkIndex();})};
+P.rxMask=function(){const b=this.bytes,p=this.block(0x0f);return (b[p]|b[p+1]<<8|b[p+2]<<16|b[p+3]<<24)>>>0};
+P.rxCount=function(){let m=this.rxMask(),n=0;while(m){n++;m=Math.floor(m/2)}return n};
+P.rxOffset=function(n){assert(Number.isInteger(n)&&n>=1&&n<=32,'Invalid RX group slot');return this.block(0x0f)+0x11+(n-1)*109};
+P.rxGroup=function(n){assert(n<=this.rxCount()&&(this.rxMask()&(2**(n-1)))!==0,'RX group slot not active');const b=this.bytes,p=this.rxOffset(n),members=[];for(let i=0;i<32;i++){let v=u24(b,p+11+i*3);if(v===0||v===0xffffff)break;members.push(v)}return {id:n,name:text(b,p,11),members,offset:p}};
+P.rxGroups=function(){return Array.from({length:this.rxCount()},(_,i)=>i+1).filter(n=>(this.rxMask()&(2**(n-1)))!==0).map(n=>this.rxGroup(n))};
+P.writeRxMembers=function(n,members){assert(Array.isArray(members)&&members.length<=32,'RX group capacity is 32 DMR IDs');const b=this.bytes,p=this.rxOffset(n),seen=new Set();for(let i=0;i<32;i++){
+  const v=i<members.length?Number(members[i]):0;
+  assert(Number.isInteger(v)&&v>=0&&v<=0xffffff&&(i>=members.length||v>0&&v<0xffffff),'Invalid RX group DMR ID');
+  if(i<members.length){assert(!seen.has(v),'Duplicate RX group ID');seen.add(v)}put24(b,p+11+i*3,v)
+ }};
+P.setRxGroup=function(n,patch){const existing=this.rxGroup(n);if((!Object.hasOwn(patch,'members')||JSON.stringify(existing.members)===JSON.stringify(patch.members))&&unchanged(existing,Object.fromEntries(Object.entries(patch).filter(([k])=>k!=='members'))))return 0;
+ return this.change('RX group #'+n,()=>{const p=this.rxOffset(n);if(Object.hasOwn(patch,'name'))name(this.bytes,p,10,patch.name);if(Object.hasOwn(patch,'members'))this.writeRxMembers(n,patch.members)})};
+P.addRxGroup=function(data){const n=this.rxCount()+1;assert(n<=32,'Maximum 32 RX groups');assert(this.rxMask()===2**(n-1)-1,'Sparse RX group mask; refusing to compact');
+ return this.change('Add RX group #'+n,()=>{let p=this.rxOffset(n),b=this.bytes;
+  name(b,p,10,data.name||('RX-'+n));this.writeRxMembers(n,data.members||[]);
+  const m=(this.rxMask()|2**(n-1))>>>0,base=this.block(0x0f);
+  for(let i=0;i<4;i++)b[base+i]=(m>>>(8*i))&255;
+ })};
+P.deleteRxGroup=function(n){assert(n<=this.rxCount(),'Invalid RX group');return this.change('Delete RX group #'+n,()=>{let count=this.rxCount(),b=this.bytes,base=this.block(0x0f);assert(this.rxMask()===2**count-1,'Sparse RX group mask; refusing to compact');
+ for(let i=n;i<count;i++)b.set(b.slice(this.rxOffset(i+1),this.rxOffset(i+1)+109),this.rxOffset(i));
+ let m=count-1===0?0:(2**(count-1)-1)>>>0;for(let i=0;i<4;i++)b[base+i]=(m>>>(i*8))&255;
+ for(let i=1;i<=this.channelCount;i++){const c=this.channel(i);if(c.digital&&c.rxGroup>=n){const p=this.chOffset(i)+31,old=b[p]&63,now=old===n?0:old-1;b[p]=(b[p]&~63)|now}}
+ })};
+P.txTalkIndex=function(n){const b=this.bytes,p=this.contactOffset(n);return ((b[p]>>4)<<8)|b[p+1]};
+const channel=P.channel;P.channel=function(n){let c=channel.call(this,n);c.txContact=c.digital?this.txTalkIndex(n):null;return c};
+const patchChannel=P.writeChannelPatch;P.writeChannelPatch=function(n,patch){if(Object.hasOwn(patch,'txContact')){
+ const value=Number(patch.txContact),c=this.channel(n);
+ assert(c.digital,'TX talk group assignment applies to DMR channels only');
+ assert(Number.isInteger(value)&&value>=0&&value<=this.getTalkCount(),'Unknown talk group assignment #'+value);
+ const p=this.contactOffset(n),b=this.bytes;b[p]=(b[p]&15)|((value>>8)<<4);b[p+1]=value&255;
+ patch={...patch};delete patch.txContact;
+ }if(Object.keys(patch).length)patchChannel.call(this,n,patch)
+};
+const validate=P.validate;P.validate=function(){const issues=validate.call(this);try{
+ const rx=this.rxGroups(),tgs=this.talkGroups(),rxIds=new Set(rx.map(x=>x.id));
+ for(let ch=1;ch<=this.channelCount;ch++){const c=this.channel(ch);if(c.digital){if(c.rxGroup&&!rxIds.has(c.rxGroup))issues.push('DMR channel #'+ch+' references missing RX group #'+c.rxGroup);if(c.txContact>tgs.length)issues.push('DMR channel #'+ch+' references missing TX talk group #'+c.txContact)}}
+ for(const g of rx)if(g.members.length>32)issues.push('RX group #'+g.id+' exceeds 32 IDs');
+ }catch(e){issues.push('DMR group validation: '+e.message)}return issues
+};
+return {FUN,KEY_FIELDS};
+});
+
+</script><script>
+/* CSV interchange for DM-32UV Codeplug Studio.
+ * All imports operate on a temporary Codeplug and return patched bytes only after
+ * every row is checked. No omitted rows are deleted, IDs are never renumbered.
+ */
+(function(root,factory){
+  const api=factory(typeof module==='object'&&module.exports?require('./core.js'):root.DM32Core);
+  if(typeof module==='object'&&module.exports)module.exports=api;
+  else root.DM32CSV=api;
+})(typeof globalThis!=='undefined'?globalThis:this,function(core){
+  'use strict';
+  const HEADERS={
+    channels:['Number','Name','RX MHz','TX MHz','Mode','Power','TX blocked','Bandwidth kHz','RX CTCSS/DCS','TX CTCSS/DCS','Squelch','Color code','Timeslot','Scan flag','Scan List'],
+    zones:['Number','Name','Channels'],scans:['Number','Name','Channels']
+  };
+  const modeNames=['Analog','DMR','Fixed analog','Fixed DMR'];
+  const powerNames=['Low','Medium','High'];
+  function assert(v,m){if(!v)throw Error(m)}
+  function quote(value){return '"'+String(value??'').replace(/"/g,'""')+'"'}
+  function stringify(rows){return '\ufeff'+rows.map(r=>r.map(quote).join(',')).join('\r\n')+'\r\n'}
+  function parse(input){
+    let source=String(input??'').replace(/^\ufeff/,'');
+    let rows=[],row=[],field='',inQuote=false,closed=false;
+    for(let i=0;i<source.length;i++){
+      const c=source[i];
+      if(inQuote){if(c==='"'&&source[i+1]==='"'){field+='"';i++}else if(c==='"'){inQuote=false;closed=true}else field+=c;continue}
+      if(c==='"'){
+        assert(!closed&&!field.trim(),'Unexpected quote at position '+i);
+        inQuote=true;
+      }else if(c===','){row.push(field);field='';closed=false}
+      else if(c==='\r'||c==='\n'){
+        if(c==='\r'&&source[i+1]==='\n')i++;
+        row.push(field);field='';closed=false;
+        if(row.some(x=>x.trim()))rows.push(row);
+        row=[];
+      }else{assert(!closed||/\s/.test(c),'Unexpected text after closing quote');field+=c}
+    }
+    assert(!inQuote,'Unterminated quoted CSV field');
+    row.push(field);if(row.some(x=>x.trim()))rows.push(row);
+    assert(rows.length>0,'CSV is empty');
+    const cols=rows[0].map(s=>s.trim().toLowerCase());
+    assert(new Set(cols).size===cols.length,'Duplicate CSV header');
+    const entries=[];
+    for(let i=1;i<rows.length;i++){
+      const r=rows[i];assert(r.length<=cols.length,'Row '+(i+1)+': extra columns');
+      const o={};cols.forEach((c,j)=>o[c]=(r[j]??'').trim());entries.push({line:i+1,values:o});
+    }
+    return{columns:cols,entries};
+  }
+  function exportCSV(cp,type){
+    assert(HEADERS[type],'Unknown CSV type');
+    let rows=[HEADERS[type]];
+    if(type==='channels'){
+      for(const c of cp.channels())rows.push([c.id,c.name,c.rx?.toFixed(5)??'',c.tx?.toFixed(5)??'',modeNames[c.mode],powerNames[c.power]??c.power,c.txBlocked,c.bandwidth,c.digital?'':c.rxTone,c.digital?'':c.txTone,c.squelch,c.color??'',c.timeslot??'',c.scanAdd,c.scanIndex===0?'None':`#${c.scanIndex} · ${cp.scan(c.scanIndex).name}`]);
+    }else for(const l of (type==='zones'?cp.zones():cp.scans()))rows.push([l.id,l.name,l.members.join(';')]);
+    return stringify(rows);
+  }
+  function strictId(v,line){assert(/^\d+$/.test(v),'Row '+line+': Number must be a positive integer');let n=Number(v);assert(Number.isSafeInteger(n)&&n>0,'Row '+line+': invalid number');return n}
+  function parseChoice(v,options,label){let i=options.findIndex(x=>x.toLowerCase()===v.toLowerCase());assert(i>=0,label+': invalid value "'+v+'" (use '+options.join(', ')+')');return i}
+  function bool(v,label){let s=v.toLowerCase();if(['true','yes','1','on'].includes(s))return true;if(['false','no','0','off'].includes(s))return false;throw Error(label+': expected true or false')}
+  function numeric(v,label){assert(/^\d+(?:\.\d+)?$/.test(v),label+': expected a number');return Number(v)}
+  function members(v,line){if(!v)return [];const parts=v.split(/[;|\s]+/).filter(Boolean),nums=parts.map(s=>strictId(s,line));assert(new Set(nums).size===nums.length,'Row '+line+': duplicate channel number');return nums}
+  function has(row,name){return Object.prototype.hasOwnProperty.call(row,name.toLowerCase())}
+  function value(row,name){return row[name.toLowerCase()]}
+  function parseScanList(v,cp,line){
+    const raw=String(v).trim();
+    if(!raw||/^(?:none|off|0)$/i.test(raw))return 0;
+    const match=raw.match(/^#?(\d+)(?:\s*[·:–-]\s*.*)?$/);
+    let id;
+    if(match)id=Number(match[1]);
+    else{
+      const matches=cp.scans().filter(s=>s.name.toLowerCase()===raw.toLowerCase());
+      assert(matches.length===1,'Row '+line+': scan-list name "'+raw+'" must match exactly one existing list');
+      id=matches[0].id;
+    }
+    assert(Number.isInteger(id)&&id>=0&&id<=cp.scanCount,'Row '+line+': scan list #'+id+' does not exist');
+    return id;
+  }
+  function makePatch(row,current,line,cp){
+    let p={},set=(name,field,fn=(v)=>v)=>{if(has(row,name))p[field]=fn(value(row,name))};
+    set('Name','name');set('RX MHz','rx');set('TX MHz','tx',v=>v||'');
+    set('Mode','mode',v=>parseChoice(v,modeNames,'Row '+line+' mode'));
+    set('Power','power',v=>parseChoice(v,powerNames,'Row '+line+' power'));
+    set('TX blocked','txBlocked',v=>bool(v,'Row '+line+' transmit'));
+    set('Bandwidth kHz','bandwidth',v=>numeric(v,'Row '+line+' bandwidth'));
+    set('Squelch','squelch',v=>numeric(v,'Row '+line+' squelch'));
+    set('Scan flag','scanAdd',v=>bool(v,'Row '+line+' scan flag'));
+    if(has(row,'Scan List'))set('Scan List','scanIndex',v=>parseScanList(v,cp,line));
+    else set('Scan index','scanIndex',v=>numeric(v,'Row '+line+' scan index')); // v3 CSV compatibility
+    if(current.digital){
+      set('Color code','color',v=>v?numeric(v,'Row '+line+' color code'):current.color);
+      set('Timeslot','timeslot',v=>v?numeric(v,'Row '+line+' timeslot'):current.timeslot);
+      if(has(row,'RX CTCSS/DCS')&&value(row,'RX CTCSS/DCS'))throw Error('Row '+line+': DMR channel cannot have an analog RX tone');
+      if(has(row,'TX CTCSS/DCS')&&value(row,'TX CTCSS/DCS'))throw Error('Row '+line+': DMR channel cannot have an analog TX tone');
+    }else{
+      set('RX CTCSS/DCS','rxTone',v=>v||'None');
+      set('TX CTCSS/DCS','txTone',v=>v||'None');
+      if(has(row,'Color code')&&value(row,'Color code'))throw Error('Row '+line+': analog channel cannot have a DMR color code');
+      if(has(row,'Timeslot')&&value(row,'Timeslot'))throw Error('Row '+line+': analog channel cannot have a DMR timeslot');
+    }
+    return p;
+  }
+  function prepare(cp,type,text){
+    assert(HEADERS[type],'Unknown CSV type');
+    const parsed=parse(text),cols=parsed.columns;
+    for(const required of type==='channels'?['Number','Name','RX MHz']:['Number','Name','Channels'])assert(cols.includes(required.toLowerCase()),'Missing CSV header: '+required+' (use this app’s CSV export as a template)');
+    assert(parsed.entries.length,'CSV contains no data rows');
+    const trial=new core.Codeplug(cp.bytes),ids=new Set();
+    let changedRecords=0,added=0,unchanged=0;
+    // Import existing records first, then append new records by consecutive ID.
+    const items=parsed.entries.map(x=>({...x,id:strictId(value(x.values,'Number'),x.line)}));
+    for(const x of items){assert(!ids.has(x.id),'Row '+x.line+': duplicate Number '+x.id);ids.add(x.id)}
+    items.sort((a,b)=>a.id-b.id);
+    const initial=type==='channels'?trial.channelCount:type==='zones'?trial.zoneCount:trial.scanCount;
+    for(const entry of items){
+      const {id,line,values:row}=entry;
+      const beforeCount=type==='channels'?trial.channelCount:type==='zones'?trial.zoneCount:trial.scanCount;
+      assert(id<=beforeCount+1,'Row '+line+': cannot skip record numbers; next available is '+(beforeCount+1));
+      try{
+        if(id===beforeCount+1){
+          if(type==='channels'){
+            assert(!has(row,'Mode')||['analog','fixed analog'].includes(value(row,'Mode').toLowerCase()),'New DMR channels cannot be created via CSV (unknown contact pointers)');
+            const donor=trial.channels().find(c=>!c.digital&&!c.name.startsWith('UNUSED-'));
+            assert(donor,'No analog template available');
+            trial.addChannel(donor.id);
+          }else if(type==='zones')trial.addZone();else trial.addScan();
+          added++;
+        }
+        if(type==='channels'){
+          const current=trial.channel(id);
+          const patch=makePatch(row,current,line,trial);
+          assert(!('name'in patch)||patch.name,'Channel name cannot be blank');
+          if(id>initial)assert('name'in patch&&'rx'in patch&&patch.rx,'New channel requires Name and RX MHz');
+          trial.setChannel(id,patch);
+        }else{
+          const kind=type==='zones'?'zone':'scan';
+          const current=kind==='zone'?trial.zone(id):trial.scan(id);
+          assert(value(row,'Name'),'List name cannot be blank');
+          trial.setListName(kind,id,value(row,'Name'));
+          trial.setMembers(kind,id,members(value(row,'Channels'),line));
+        }
+      }catch(err){throw Error('Row '+line+' (#'+id+'): '+err.message)}
+    }
+    for(const item of items){
+      const id=item.id;
+      let before,after,p,len;
+      if(type==='channels'){p=trial.chOffset(id);len=48}
+      else if(type==='zones'){p=trial.zoneOffset(id);len=145}
+      else{p=trial.scanOffset(id);len=57}
+      before=cp.bytes.subarray(p,p+len);after=trial.bytes.subarray(p,p+len);
+      if(id>initial||before.some((x,i)=>x!==after[i]))changedRecords++;else unchanged++;
+    }
+    const diff=trial.bytes.reduce((acc,v,i)=>acc+(v!==cp.bytes[i]?1:0),0);
+    return{type,rows:items.length,added,changedRecords,unchanged,changedBytes:diff,bytes:trial.bytes};
+  }
+  return{HEADERS,parse,stringify,exportCSV,prepare};
+});
+
+</script><script>
+/* CSV adapter for v6 DMR lists. Existing CSV formats remain backward-compatible. */
+(function(root,factory){const api=factory(typeof module==='object'&&module.exports?require('./csv.js'):root.DM32CSV,
+ typeof module==='object'&&module.exports?require('./core.js'):root.DM32Core);
+ if(typeof module==='object'&&module.exports)module.exports=api;else root.DM32CSV=api;
+})(typeof globalThis!=='undefined'?globalThis:this,function(csv,core){
+'use strict';
+const baseExport=csv.exportCSV,basePrepare=csv.prepare;
+csv.HEADERS.talkgroups=['Number','Name','DMR ID','Call Type'];
+csv.HEADERS.rxgroups=['Number','Name','DMR IDs'];
+function assert(c,m){if(!c)throw Error(m)}
+function safePositive(v,label){assert(/^\d+$/.test(String(v)),label+' must be a positive integer');const n=Number(v);assert(Number.isSafeInteger(n)&&n>0,label+' invalid');return n}
+csv.exportCSV=function(cp,type){if(type==='talkgroups')return csv.stringify([csv.HEADERS.talkgroups,...cp.talkGroups().map(t=>[t.id,t.name,t.dmrId,t.callType===4?'Group':t.callType===3?'Private':'All'])]);
+ if(type==='rxgroups')return csv.stringify([csv.HEADERS.rxgroups,...cp.rxGroups().map(g=>[g.id,g.name,g.members.join(';')])]);return baseExport(cp,type)};
+csv.prepare=function(cp,type,source){if(type!=='talkgroups'&&type!=='rxgroups')return basePrepare(cp,type,source);
+ const parsed=csv.parse(source),required=csv.HEADERS[type].map(s=>s.toLowerCase());for(const col of required)assert(parsed.columns.includes(col),'Missing CSV column '+col);
+ assert(parsed.entries.length,'CSV is empty');const trial=new core.Codeplug(cp.bytes),initial=type==='talkgroups'?trial.getTalkCount():trial.rxCount();
+ let added=0,changedRecords=0,unchanged=0;const seen=new Set();const items=parsed.entries.map(r=>({row:r.values,line:r.line,n:safePositive(r.values.number,'Row '+r.line+' Number')})).sort((a,b)=>a.n-b.n);
+ for(const {row,line,n} of items){assert(!seen.has(n),'Duplicate record #'+n);seen.add(n);
+ try{
+  if(type==='talkgroups'){
+   let typeCode={'private':3,'private call':3,'group':4,'group call':4,'all':5,'all call':5}[row['call type'].toLowerCase()];assert(typeCode!==undefined,'Invalid call type');const val={name:row.name,dmrId:safePositive(row['dmr id'],'DMR ID'),callType:typeCode};
+   if(n===trial.getTalkCount()+1){trial.addTalkGroup(val);added++}
+   else{assert(n<=trial.getTalkCount(),'Cannot skip Talk Group #'+n);trial.setTalkGroup(n,val)}
+  }else{
+   const ids=row['dmr ids'].trim()?row['dmr ids'].split(/\s*[;|]\s*/).filter(Boolean).map(x=>safePositive(x,'DMR ID')):[];
+   if(n===trial.rxCount()+1){trial.addRxGroup({name:row.name,members:ids});added++}
+   else{assert(n<=trial.rxCount(),'Cannot skip RX group #'+n);trial.setRxGroup(n,{name:row.name,members:ids})}
+  }
+ }catch(err){throw Error('CSV row '+line+': '+err.message)}
+ }
+ for(const {n}of items){let p,len;if(type==='talkgroups'){p=trial.tgOffset(n);len=24}else{p=trial.rxOffset(n);len=109}if(n>initial||trial.bytes.subarray(p,p+len).some((x,i)=>x!==cp.bytes[p+i]))changedRecords++;else unchanged++}
+ const changedBytes=trial.bytes.reduce((count,v,i)=>count+(v!==cp.bytes[i]?1:0),0);
+ return {type,rows:items.length,added,changedRecords,unchanged,changedBytes,bytes:trial.bytes};
+};return csv
+});
+
+</script><script>
+/* UI for DM32Core. All file operations use local browser APIs only. */
+(function(){'use strict';
+const $=id=>document.getElementById(id), core=globalThis.DM32Core, csvTool=globalThis.DM32CSV;
+let cp=null,filename='',active='channels',selected={zones:1,scans:1,talkgroups:1,rxgroups:1},selectedChannels=new Set(),filter='',memberFilter='',page=0,pageSize=50,listPage={zones:0,scans:0},listPageSize={zones:25,scans:25},candidatePage=0,candidatePageSize=25,extraFilter="",extraPage=0,extraPageSize=25,focusMode=false,includeArchived=false,history=[],scanTouched=false,toastTimer=null;
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function e(s){return esc(s)}
+function note(s,error=false){const el=$('toast');el.textContent=s;el.style.background=error?'#983a37':'';el.classList.remove('hide');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.add('hide'),3800)}
+function opt(options,current){return options.map(([v,label])=>`<option value="${e(v)}" ${String(current)===String(v)?'selected':''}>${e(label)}</option>`).join('')}
+function choose(val,options,attr=''){return `<select ${attr}>${opt(options,val)}</select>`}
+function tgChoices(current=0){let opts=[[0,'None'],...cp.talkGroups().map(g=>[g.id,'#'+g.id+' · '+g.name+' ('+g.dmrId+')'])];if(current>cp.getTalkCount())opts.push([current,'Unknown #'+current]);return opts}
+function rxChoices(current=0){let opts=[[0,'None'],...cp.rxGroups().map(g=>[g.id,'#'+g.id+' · '+g.name])];if(current>cp.rxCount())opts.push([current,'Unknown #'+current]);return opts}
+function scanChoices(current=0){const lists=cp.scans().map(s=>[s.id,'#'+s.id+' · '+s.name]);if(current>cp.scanCount)lists.push([current,'INVALID #'+current+' (missing list)']);return [[0,'None'],...lists]}
+const callTypes=[[3,'Private Call'],[4,'Group Call'],[5,'All Call']];
+const modes=[[0,'Analog'],[1,'DMR'],[2,'Fixed analog'],[3,'Fixed DMR']],powers=[[0,'Low'],[1,'Medium'],[2,'High']],yn=[[false,'Allowed'],[true,'Blocked']],bw=[[12.5,'12.5 kHz'],[25,'25 kHz']],tones=[['None','Off'],...core.CTCSS.map(x=>[x.toFixed(1),x.toFixed(1)+' Hz']),...core.DCS.flatMap(x=>[['D'+x+'N','D'+x+' N'],['D'+x+'I','D'+x+' I']])];
+function safe(fn,description){if(!cp)return;const old=cp.bytes.slice(),audit=cp.audit.slice(),oldScan=scanTouched;try{let result=fn();if(old.every((v,i)=>v===cp.bytes[i]))return result;history.push({old,audit,oldScan});if(history.length>25)history.shift();refreshHeader();return result}catch(err){cp.bytes=old;cp.audit=audit;scanTouched=oldScan;note(err.message,true);return null}}
+async function load(file){if(!file)return;try{let buf=await file.arrayBuffer();cp=new core.Codeplug(buf);filename=file.name;history=[];selectedChannels.clear();filter='';memberFilter='';page=0;candidatePage=0;listPage={zones:0,scans:0};selected={zones:1,scans:1,talkgroups:1,rxgroups:1};scanTouched=false;active='channels';$('welcome').classList.add('hide');$('loaded').classList.remove('hide');document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===active));refreshHeader();render();note('Opened '+file.name+' — no bytes changed')}catch(err){note('Cannot open file: '+err.message,true)}}
+function refreshHeader(){if(!cp)return;const st=cp.stats();$('fileName').textContent=filename;$('fileDetail').textContent=st.firmware+' · '+st.length.toLocaleString()+' bytes';$('stats').innerHTML=`<div class="stat"><b>${st.channels}</b><br>Channels</div><div class="stat"><b>${st.zones}</b><br>Zones</div><div class="stat"><b>${st.scans}</b><br>Scan lists</div><div class="stat"><b>${cp.getTalkCount()}</b><br>Talk Groups</div><div class="stat"><b>${cp.rxGroups().length}</b><br>RX groups</div><div class="stat"><b>${st.changedBytes.toLocaleString()}</b><br>Modified bytes</div>`;for(let x of ['saveBtn','resetBtn','diffBtn'])$(x).disabled=false;$('undoBtn').disabled=!history.length;}
+function render(){if(!cp)return;$('focusView').value=active==='about'?'channels':active;const area=$('main');if(active==='channels')renderChannels(area);else if(active==='zones'||active==='scans')renderList(area);else if(active==='talkgroups')renderTalkGroups(area);else if(active==='rxgroups')renderRxGroups(area);else if(active==='keys')renderKeys(area);else renderAbout(area)}
+function pageOptions(value){return [10,25,50,'all'].map(n=>`<option value="${n}" ${String(n)===String(value)?'selected':''}>${n==='all'?'All':n}</option>`).join('')}
+function slicePage(rows,index,size){return size==='all'?rows:rows.slice(index*Number(size),(index+1)*Number(size))}
+function pageMax(total,size){return size==='all'?0:Math.max(0,Math.ceil(total/Number(size))-1)}
+function pageRange(total,index,size){if(!total)return 'No matching items';return `${size==='all'?1:index*Number(size)+1}–${size==='all'?total:Math.min(total,(index+1)*Number(size))} of ${total}`}
+function edited(type,n){let p,len;if(type==='channels'){p=cp.chOffset(n);len=48}else if(type==='zones'){p=cp.zoneOffset(n);len=145}else{p=cp.scanOffset(n);len=57}
+return cp.bytes.subarray(p,p+len).some((x,i)=>x!==cp.original[p+i]);}
+function editorMark(isEdited){return isEdited?'<span class="editmark">Edited</span>':''}
+function csvActions(type){let label=({channels:'channels',zones:'zones',scans:'scan lists',talkgroups:'Talk Groups',rxgroups:'RX Group Lists'})[type]||type;return `<button class="btn small" data-csv-export="${type}">Export ${label} CSV</button><button class="btn small" data-csv-import="${type}">Import ${label} CSV</button>`}
+function bindCsvActions(root){root.querySelectorAll('[data-csv-export]').forEach(el=>el.onclick=()=>exportCsv(el.dataset.csvExport));root.querySelectorAll('[data-csv-import]').forEach(el=>el.onclick=()=>importCsv(el.dataset.csvImport))}
+// Checkboxes are the explicit boundary for a bulk edit: an unselected row
+// always edits itself, and a checked row edits the entire checked set.
+function editTargets(n){return selectedChannels.has(n)?[...selectedChannels].sort((a,b)=>a-b):[n]}
+function bulkChannelEdit(n,patch){
+  const targets=editTargets(n),fields=Object.keys(patch);
+  if(targets.length>1&&fields.some(f=>['name','rx','tx','txBlocked'].includes(f))){
+    const explanation=fields.map(f=>f+' = '+String(patch[f])).join(', ');
+    if(!confirm('Apply '+explanation+' to '+targets.length+' selected channels?\n\nOnly this field or these explicitly edited fields will change.'))return false;
+  }
+  const result=safe(()=>cp.setChannels(targets,patch));
+  if(result===null)return false;
+  note(targets.length>1?'Updated '+targets.length+' selected channels ('+fields.join(', ')+')':'Updated channel #'+n);
+  return true;
+}
+function renderChannels(root){
+let chans=cp.channels().filter(c=>(includeArchived||!c.name.startsWith('UNUSED-'))&&(!filter||[c.name,c.id,c.rx,c.tx,c.digital?'dmr':'analog'].join(' ').toLowerCase().includes(filter.toLowerCase())));
+const maxPage=pageMax(chans.length,pageSize);page=Math.min(page,maxPage);const subset=slicePage(chans,page,pageSize);
+root.innerHTML=`<div class="bar"><div><h2>Channels <span class="tag">${chans.length} shown</span> <span class="tag" id="selectionCount" aria-live="polite">${selectedChannels.size} selected</span></h2><div class="hint">Tick channels, then edit any checked row: <b>only that field</b> changes on all selected channels. Selection carries across pages. Yellow = edited; blue = selected.</div></div><div class="toolbar"><button class="btn small" id="selectFiltered">Select all ${chans.length} matching</button><button class="btn small" id="clearSelected" ${!selectedChannels.size?'disabled':''}>Clear selection</button>${csvActions('channels')}<label class="pagesize hint">Show <select id="channelPageSizeTop" class="input">${pageOptions(pageSize)}</select></label><input class="input search" id="chSearch" placeholder="Search name, frequency or number…" value="${e(filter)}"><label class="check-inline hint"><input type="checkbox" id="showArchived" ${includeArchived?'checked':''}> Show archived</label><button class="btn" id="addCh">+ Add channel</button></div></div>
+<div class="panel"><div class="table-scroll"><table class="tbl"><thead><tr><th class="center"><input type="checkbox" id="selectVisible" aria-label="Select all channels on this page" title="Select all channels on this page"></th><th>#</th><th>Name</th><th>RX MHz</th><th>TX MHz</th><th>Mode</th><th>Power</th><th>Transmit</th><th>BW</th><th>Scan List</th><th>TX Talk Group</th><th>RX Group</th><th>RX tone</th><th>TX tone</th><th>Other</th></tr></thead><tbody>${subset.map(c=>`<tr data-id="${c.id}" class="${edited('channels',c.id)?'edited':''} ${selectedChannels.has(c.id)?'selected':''}"><td class="center"><input type="checkbox" data-select-channel="${c.id}" aria-label="Select channel ${c.id}" ${selectedChannels.has(c.id)?'checked':''}></td><td class="mono muted">${c.id}${editorMark(edited('channels',c.id))}</td><td><input aria-label="Channel ${c.id} name" data-field="name" maxlength="16" style="width:135px" value="${e(c.name)}"></td><td><input aria-label="Channel ${c.id} RX frequency" data-field="rx" class="mono" style="width:104px" value="${c.rx===null?'':c.rx.toFixed(5)}"></td><td><input aria-label="Channel ${c.id} TX frequency" data-field="tx" class="mono" style="width:104px" title="Blank means TX frequency field FF FF FF FF" value="${c.tx===null?'':c.tx.toFixed(5)}"></td><td>${choose(c.mode,modes,'data-field="mode" style="width:100px"')}</td><td>${choose(c.power,powers,'data-field="power" style="width:80px"')}</td><td>${choose(c.txBlocked,yn,'data-field="txBlocked" style="width:92px"')}</td><td>${choose(c.bandwidth,bw,'data-field="bandwidth" style="width:93px"')}</td><td>${choose(c.scanIndex,scanChoices(c.scanIndex),'data-field="scanIndex" aria-label="Channel '+c.id+' scan list" style="width:165px"')}</td><td>${c.digital?choose(c.txContact,tgChoices(c.txContact),'data-field="txContact" style="width:166px"'):'<span class="muted">—</span>'}</td><td>${c.digital?choose(c.rxGroup,rxChoices(c.rxGroup),'data-field="rxGroup" style="width:140px"'):'<span class="muted">—</span>'}</td><td>${c.digital?'<span class="muted">DMR</span>':choose(c.rxTone,tones,'data-field="rxTone" style="width:105px"')}</td><td>${c.digital?'<span class="muted">DMR</span>':choose(c.txTone,tones,'data-field="txTone" style="width:105px"')}</td><td><button class="btn small" data-details="${c.id}">Details</button></td></tr>`).join('')}</tbody></table></div>
+<div class="table-footer"><span>${pageRange(chans.length,page,pageSize)}</span><div class="footer-compact"><label class="pagesize">Rows per page <select class="input" id="channelPageSize">${pageOptions(pageSize)}</select></label><button id="prev" class="btn small" ${page===0?'disabled':''}>← Previous</button><span>Page ${page+1} / ${maxPage+1}</span><button id="next" class="btn small" ${page>=maxPage?'disabled':''}>Next →</button></div></div></div>`;
+$('chSearch').addEventListener('input',ev=>{filter=ev.target.value;page=0;const start=ev.target.selectionStart;render();const inp=$('chSearch');inp.focus();inp.setSelectionRange(start,start)});
+$('showArchived').onchange=ev=>{includeArchived=ev.target.checked;page=0;render()};$('addCh').onclick=addChannelModal;
+for(const control of ['channelPageSize','channelPageSizeTop'])$(control).onchange=ev=>{pageSize=ev.target.value==='all'?'all':Number(ev.target.value);page=0;render()};
+$('prev').onclick=()=>{page--;render()};$('next').onclick=()=>{page++;render()};
+const selectVisible=$('selectVisible');
+selectVisible.checked=subset.length>0&&subset.every(c=>selectedChannels.has(c.id));
+selectVisible.indeterminate=subset.some(c=>selectedChannels.has(c.id))&&!selectVisible.checked;
+selectVisible.onchange=ev=>{for(const c of subset){if(ev.target.checked)selectedChannels.add(c.id);else selectedChannels.delete(c.id)}render()};
+root.querySelectorAll('[data-select-channel]').forEach(el=>el.onchange=ev=>{const n=Number(ev.target.dataset.selectChannel);if(ev.target.checked)selectedChannels.add(n);else selectedChannels.delete(n);render()});
+$('selectFiltered').onclick=()=>{for(const c of chans)selectedChannels.add(c.id);render()};
+$('clearSelected').onclick=()=>{selectedChannels.clear();render()};
+root.querySelectorAll('[data-field]').forEach(el=>el.addEventListener('change',()=>{
+  const n=Number(el.closest('tr').dataset.id),field=el.dataset.field;
+  let value=el.value;
+  if(['mode','power','bandwidth','scanIndex','txContact','rxGroup'].includes(field))value=Number(value);
+  if(field==='txBlocked')value=value==='true';
+  bulkChannelEdit(n,{[field]:value});render();
+}));
+root.querySelectorAll('[data-details]').forEach(el=>el.onclick=()=>details(Number(el.dataset.details)));
+bindCsvActions(root);
+}
+
+function modal(html,onReady){$('modalRoot').innerHTML=`<div class="modal"><section class="dialog" role="dialog" aria-modal="true">${html}</section></div>`;const close=()=>{$('modalRoot').innerHTML=''};document.querySelector('.modal').addEventListener('click',ev=>{if(ev.target.classList.contains('modal'))close()});document.addEventListener('keydown',function key(ev){if(ev.key==='Escape'&&$('modalRoot').children.length){close();document.removeEventListener('keydown',key)}});$('modalRoot').querySelectorAll('[data-close]').forEach(x=>x.onclick=close);onReady?.(close)}
+function details(n){let c=cp.channel(n),targetIds=editTargets(n),many=targetIds.length>1;const sq=Array.from({length:16},(_,i)=>[i,String(i)]), colors=sq,scanIndices=scanChoices(c.scanIndex);modal(`<h2>Channel #${n} — ${e(c.name)}</h2>${many?`<div class="callout"><label class="check-inline"><input type="checkbox" id="bulkDetails" checked> <b>Apply edited fields to all ${targetIds.length} selected channels</b></label><div class="hint">Only fields you change in this dialog will be copied. Unedited values on other channels remain untouched. Uncheck to edit channel #${n} alone.</div></div>`:'<p class="hint">Fields with known bit layouts. Unrecognized bytes remain untouched.</p>'}<div class="formgrid"><div class="formcell"><label>Channel name (16 ASCII characters)</label><input id="dname" class="field" maxlength="16" value="${e(c.name)}"></div><div class="formcell"><label>Mode</label>${choose(c.mode,modes,'id="dmode" class="field"')}</div><div class="formcell"><label>RX frequency (MHz)</label><input id="drx" class="field" value="${c.rx===null?'':c.rx.toFixed(5)}"></div><div class="formcell"><label>TX frequency (MHz; blank = no TX frequency)</label><input id="dtx" class="field" value="${c.tx===null?'':c.tx.toFixed(5)}"></div><div class="formcell"><label>Power level</label>${choose(c.power,powers,'id="dpower" class="field"')}</div><div class="formcell"><label>Transmit</label>${choose(c.txBlocked,yn,'id="dblock" class="field"')}</div><div class="formcell"><label>Bandwidth</label>${choose(c.bandwidth,bw,'id="dbw" class="field"')}</div><div class="formcell"><label>Squelch</label>${choose(c.squelch,sq,'id="dsq" class="field"')}</div><div class="formcell"><label>RX CTCSS / DCS (analog)</label>${choose(c.rxTone,tones,'id="drxtone" class="field" '+(c.digital?'disabled':''))}</div><div class="formcell"><label>TX CTCSS / DCS (analog)</label>${choose(c.txTone,tones,'id="dtxtone" class="field" '+(c.digital?'disabled':''))}</div><div class="formcell"><label>DMR color code</label>${choose(c.color??0,colors,'id="dcolor" class="field" '+(!c.digital?'disabled':''))}</div><div class="formcell"><label>DMR timeslot</label>${choose(c.timeslot??1,[[1,'TS1'],[2,'TS2']],'id="dslot" class="field" '+(!c.digital?'disabled':''))}</div><div class="formcell"><label>Scan membership flag (bit 6)</label>${choose(c.scanAdd,[[false,'Off'],[true,'On']],'id="dscanadd" class="field"')}</div><div class="formcell"><label>Scan List</label>${choose(c.scanIndex,scanIndices,'id="dscanidx" class="field"')}</div><div class="formcell"><label>DMR TX Talk Group</label>${choose(c.txContact??0,tgChoices(c.txContact),'id="dtg" class="field" '+(!c.digital?'disabled':''))}</div><div class="formcell"><label>DMR RX Group List</label>${choose(c.rxGroup??0,rxChoices(c.rxGroup),'id="drxgroup" class="field" '+(!c.digital?'disabled':''))}</div></div>
+<p class="hint">DMR TX Talk Group and RX Group List are channel references. Scan List chooses the list used for scanning; each scan list can contain 15 channels plus the current listening channel.</p>
+<div class="dialogfoot"><button class="btn danger" id="deleteChannel">Delete channel</button><button class="btn" id="archive">Archive instead</button><div class="grow"></div><button class="btn" data-close>Cancel</button><button class="btn primary" id="applyDetails">Apply</button></div>`,close=>{
+$('dmode').onchange=()=>{let digit=Number($('dmode').value)%2===1;for(let f of ['drxtone','dtxtone'])$(f).disabled=digit;for(let f of ['dcolor','dslot','dtg','drxgroup'])$(f).disabled=!digit};
+$('applyDetails').onclick=()=>{let next=Number($('dmode').value);if((next&1)!==(c.mode&1)){note('Switching analog ↔ DMR requires remapping other fields; use a same-mode channel template.',true);return}
+const patch={name:$('dname').value,rx:$('drx').value,tx:$('dtx').value,mode:next,power:Number($('dpower').value),txBlocked:$('dblock').value==='true',bandwidth:Number($('dbw').value),squelch:Number($('dsq').value),scanAdd:$('dscanadd').value==='true',scanIndex:Number($('dscanidx').value)};if(c.digital){patch.color=Number($('dcolor').value);patch.timeslot=Number($('dslot').value);patch.txContact=Number($('dtg').value);patch.rxGroup=Number($('drxgroup').value)}else{patch.rxTone=$('drxtone').value;patch.txTone=$('dtxtone').value}
+// For bulk Details editing, compare against the *displayed initial values*,
+// not raw numeric frequency strings, so "145.50000" doesn't count as a change
+// from 145.5 and overwrite other selected frequencies by accident.
+const initialFreq={rx:c.rx===null?'':c.rx.toFixed(5),tx:c.tx===null?'':c.tx.toFixed(5)};
+const changed=Object.fromEntries(Object.entries(patch).filter(([key,v])=>
+  key==='rx'||key==='tx'?String(v).trim()!==initialFreq[key]:String(v)!==String(c[key])
+));
+const useBulk=many&&$('bulkDetails').checked;
+const ids=useBulk?targetIds:[n];
+if(useBulk&&Object.keys(changed).length===0){close();render();note('No fields changed');return}
+if(useBulk&&Object.keys(changed).some(f=>['name','rx','tx','txBlocked'].includes(f))&&
+  !confirm('Apply '+Object.keys(changed).join(', ')+' to '+ids.length+' selected channels?'))return;
+const r=safe(()=>cp.setChannels(ids,useBulk?changed:patch));
+if(r!==null){close();render();note(useBulk?'Updated '+ids.length+' selected channels':'Saved channel #'+n)}};
+$('deleteChannel').onclick=()=>{
+  const affectedZones=cp.zones().filter(z=>z.members.includes(n)).length;
+  const affectedScans=cp.scans().filter(s=>s.members.includes(n)).length;
+  const msg='Permanently delete channel #'+n+' ('+c.name+')?\n\nAll later channels will move up one number. '+affectedZones+' zone(s) and '+affectedScans+' scan list(s) reference this channel. Their memberships, other channel numbers, and DMR contact selectors will be updated.\n\nYou can Undo immediately or Reset to the original file.';
+  if(!confirm(msg))return;
+  const r=safe(()=>cp.deleteChannel(n));
+  if(r!==null){selectedChannels.clear();scanTouched=true;close();page=0;render();note('Deleted channel #'+n+'; updated all channel references')}
+};
+$('archive').onclick=()=>{if(!confirm('Archive #'+n+'? Its channel number will be kept, TX blocked, and it will be removed from visible zone/scan memberships. This may still have hidden DMR references.'))return;const r=safe(()=>{cp.archiveChannel(n);scanTouched=true});if(r!==null){selectedChannels.delete(n);close();render();note('Archived #'+n)}};
+})}
+function addChannelModal(){const analog=cp.channels().filter(c=>!c.digital&&!c.name.startsWith('UNUSED-'));modal(`<h2>Add a channel</h2><p class="helptext">New channels are appended to preserve all existing channel numbers. Copy the settings from an analog channel; the new channel begins with transmit blocked.</p><div class="formcell"><label>Copy settings from</label><select class="field" id="copyCh">${analog.map(c=>`<option value="${c.id}">#${c.id} ${e(c.name)} (${c.rx?.toFixed(5)||'—'} MHz)</option>`).join('')}</select></div><div class="dialogfoot"><button class="btn" data-close>Cancel</button><button class="btn primary" id="createCh">Add channel</button></div>`,close=>{$('createCh').onclick=()=>{let id=safe(()=>cp.addChannel(Number($('copyCh').value)));if(id!==null){close();filter='';page=pageSize==='all'?0:Math.floor((cp.channelCount-1)/pageSize);render();details(id)}}})}
+function renderList(root){
+const isZone=active==='zones',type=isZone?'zone':'scan',arr=isZone?cp.zones():cp.scans(),max=isZone?64:15,id=Math.min(selected[active]||1,arr.length),item=arr[id-1];selected[active]=id;
+const pgMax=pageMax(arr.length,listPageSize[active]);listPage[active]=Math.min(listPage[active],pgMax);
+const slice=slicePage(arr,listPage[active],listPageSize[active]);
+root.innerHTML=`<div class="bar"><div><h2>${isZone?'Zones':'Scan lists'} <span class="tag">${arr.length}</span></h2><div class="hint">Choose a list. Yellow entries have changed since opening the original file.</div></div><div class="toolbar">${csvActions(active)}<label class="pagesize hint">Show <select id="listPageSizeTop" class="input">${pageOptions(listPageSize[active])}</select></label><button class="btn" id="newList">+ Add ${isZone?'zone':'scan list'}</button></div></div>
+<div class="lists"><div><aside class="panel listnav">${slice.map(l=>`<button class="listitem ${l.id===id?'active':''} ${edited(active,l.id)?'edited':''}" data-id="${l.id}"><span class="mono muted" style="min-width:26px">${l.id}</span><span class="grow"><strong>${e(l.name)}</strong>${editorMark(edited(active,l.id))}<small>${l.members.length} channels</small></span><span class="muted">›</span></button>`).join('')}</aside><div class="table-footer panel"><span>${pageRange(arr.length,listPage[active],listPageSize[active])}</span><div class="footer-compact"><label class="pagesize">Show <select id="listPageSize" class="input">${pageOptions(listPageSize[active])}</select></label><button id="listPrev" class="btn small" ${listPage[active]===0?'disabled':''}>←</button><span>${listPage[active]+1} / ${pgMax+1}</span><button id="listNext" class="btn small" ${listPage[active]>=pgMax?'disabled':''}>→</button></div></div></div>
+<section class="panel editor" id="editor">${item?listEditor(type,item,max,arr.length):'<p>No lists yet.</p>'}</section></div>`;
+root.querySelectorAll('.listitem').forEach(el=>el.onclick=()=>{selected[active]=Number(el.dataset.id);memberFilter='';candidatePage=0;render()});
+$('newList').onclick=()=>{let id=safe(()=>isZone?cp.addZone():cp.addScan());if(id!==null){if(!isZone)scanTouched=true;selected[active]=id;listPage[active]=listPageSize[active]==='all'?0:Math.floor((id-1)/listPageSize[active]);render();note('Added '+type+' #'+id)}};
+for(const control of ['listPageSize','listPageSizeTop'])$(control).onchange=ev=>{listPageSize[active]=ev.target.value==='all'?'all':Number(ev.target.value);listPage[active]=0;render()};
+$('listPrev').onclick=()=>{listPage[active]--;render()};$('listNext').onclick=()=>{listPage[active]++;render()};
+if(item)wireList(type,item,max);bindCsvActions(root);
+}
+
+function listEditor(type,item,max,count){const chan=cp.channels(),used=new Set(item.members),available=chan.filter(c=>!used.has(c.id)&&(!memberFilter||[c.id,c.name,c.rx].join(' ').toLowerCase().includes(memberFilter.toLowerCase()))),muted=type==='scan'?'<div class="callout">Scan-list structure contains undocumented bytes. This editor preserves them, but modifications require verification in official CPS.</div>':'';
+const candidateMax=pageMax(available.length,candidatePageSize);candidatePage=Math.min(candidatePage,candidateMax);const availablePage=slicePage(available,candidatePage,candidatePageSize);
+return `<div class="listhead"><div><h2 style="margin:0">${e(item.name)}${editorMark(edited(active,item.id))}</h2><div class="hint">${type==='zone'?'Zone':'Scan list'} #${item.id} · ${item.members.length} of ${max} channels</div></div><button id="deleteLast" class="btn small danger">Delete ${type==='zone'?'zone':'scan list'}</button></div><div style="margin:14px 0"><label class="hint" for="listName">List name (${type==='zone'?'16':'11'} ASCII characters max)</label><div class="toolbar"><input class="input" id="listName" maxlength="${type==='zone'?'16':'11'}" style="max-width:365px" value="${e(item.name)}"><button class="btn" id="renameList">Rename</button></div></div>${muted}
+<div class="split"><section><div class="listhead"><h3>Included channels</h3><span class="hint">Reorder with arrows</span></div><div class="memberlist">${item.members.length?item.members.map((n,i)=>{let c=chan[n-1];return `<div class="member ${edited('channels',n)?'edited':''}"><span class="mono muted" style="min-width:20px">${i+1}.</span><span class="member-name"><b>#${n}</b> ${e(c?.name||'[Missing channel]')}<br><small>${c?.rx?.toFixed(5)||'—'} MHz</small></span><button data-move="up" data-index="${i}" title="Move up" ${i===0?'disabled':''}>↑</button><button data-move="down" data-index="${i}" title="Move down" ${i===item.members.length-1?'disabled':''}>↓</button><button class="x" data-remove="${n}" title="Remove from list">×</button></div>`}).join(''):'<p class="hint" style="padding:15px">No channels in this list.</p>'}</div></section>
+<section><div class="listhead"><h3>Add channels</h3><span class="hint">${max-item.members.length} slots left</span></div><input class="input" id="memberSearch" placeholder="Search by name / number / MHz…" value="${e(memberFilter)}" style="margin-bottom:9px"><div class="availablelist" id="availableList">${availablePage.map(c=>`<label class="candidate ${edited('channels',c.id)?'edited':''}" title="Add to list"><input type="checkbox" data-add="${c.id}" ${item.members.length>=max?'disabled':''}><span class="grow"><b>#${c.id}</b> ${e(c.name)}</span><small>${c.rx?.toFixed(5)||'—'} MHz</small></label>`).join('')}${!available.length?'<p class="hint" style="padding:15px">No matching channels.</p>':''}</div><div class="table-footer"><span>${pageRange(available.length,candidatePage,candidatePageSize)}</span><div class="footer-compact"><label class="pagesize">Show <select id="candidatePageSize" class="input">${pageOptions(candidatePageSize)}</select></label><button id="candidatePrev" class="btn small" ${candidatePage===0?'disabled':''}>←</button><button id="candidateNext" class="btn small" ${candidatePage>=candidateMax?'disabled':''}>→</button></div></div><div class="hint" style="margin-top:9px">Selection adds a channel to the end of the list. Maximum ${max} channels.</div></section></div>
+<div class="toolbar" style="margin-top:16px"><button class="btn small" id="clearMembers" ${!item.members.length?'disabled':''}>Clear list membership</button></div>`}
+function wireList(type,item,max){$('candidatePageSize').onchange=ev=>{candidatePageSize=ev.target.value==='all'?'all':Number(ev.target.value);candidatePage=0;render()};$('candidatePrev').onclick=()=>{candidatePage--;render()};$('candidateNext').onclick=()=>{candidatePage++;render()};$('renameList').onclick=()=>{let v=$('listName').value,r=safe(()=>cp.setListName(type,item.id,v));if(r!==null){render();note('Renamed '+type)}}; $('deleteLast').onclick=()=>{
+  const affected=type==='scan'?cp.channels().filter(c=>c.scanIndex===item.id).length:0;
+  const suffix=type==='scan'?' '+affected+' channel(s) assigned to this list will become None. Channels assigned to later lists will retain those lists at their new numbers.':'';
+  if(!confirm('Permanently delete '+type+' #'+item.id+' ('+item.name+')?\n\nFollowing '+(type==='zone'?'zones':'scan lists')+' will move up one ID.'+suffix+'\n\nYou can Undo or Reset afterward.'))return;
+  const r=safe(()=>cp.deleteList(type,item.id));
+  if(r!==null){if(type==='scan')scanTouched=true;selected[active]=Math.min(item.id,type==='zone'?cp.zoneCount:cp.scanCount);render();note('Deleted '+type+' #'+item.id+'; channel scan-list assignments updated')}
+};
+$('clearMembers').onclick=()=>{if(!confirm('Remove all channels from this list?'))return;apply([])};
+function apply(members){const r=safe(()=>cp.setMembers(type,item.id,members));if(r!==null){if(type==='scan')scanTouched=true;render()}}
+document.querySelectorAll('[data-remove]').forEach(el=>el.onclick=()=>apply(item.members.filter(x=>x!==Number(el.dataset.remove))));
+document.querySelectorAll('[data-move]').forEach(el=>el.onclick=()=>{let a=item.members.slice(),i=Number(el.dataset.index),j=i+(el.dataset.move==='up'?-1:1);[a[i],a[j]]=[a[j],a[i]];apply(a)});
+$('memberSearch').addEventListener('input',ev=>{memberFilter=ev.target.value;candidatePage=0;const loc=ev.target.selectionStart;render();const inp=$('memberSearch');inp.focus();inp.setSelectionRange(loc,loc)});
+document.querySelectorAll('[data-add]').forEach(el=>el.onchange=()=>{let n=Number(el.dataset.add);if(item.members.length>=max){note('List capacity '+max+' reached',true);render();return}apply([...item.members,n])});}
+
+// v6 additions: active Talk Groups, DMR RX group memberships and CPS Key Settings.
+function groupEdited(start,size){return cp.bytes.subarray(start,start+size).some((b,i)=>b!==cp.original[start+i])}
+function extraToolbar(label,total){return `<div class="bar"><div><h2>${label} <span class="tag">${total}</span></h2><div class="hint">Yellow = edited since the file was opened. Changes preserve all unrelated bytes.</div></div><div class="toolbar"><label class="pagesize hint">Show <select class="input" id="extraSize">${pageOptions(extraPageSize)}</select></label><input class="input search" id="extraSearch" placeholder="Search name / ID…" value="${e(extraFilter)}"></div></div>`}
+function bindExtraToolbar(){
+  $('extraSize').onchange=ev=>{extraPageSize=ev.target.value==='all'?'all':Number(ev.target.value);extraPage=0;render()};
+  $('extraSearch').oninput=ev=>{extraFilter=ev.target.value;extraPage=0;const pos=ev.target.selectionStart;render();const el=$('extraSearch');el.focus();el.setSelectionRange(pos,pos)};
+}
+function extraFooter(total){const maximum=pageMax(total,extraPageSize);extraPage=Math.min(extraPage,maximum);return `<div class="table-footer"><span>${pageRange(total,extraPage,extraPageSize)}</span><div class="footer-compact"><button class="btn small" id="extraPrev" ${extraPage===0?'disabled':''}>← Previous</button>Page ${extraPage+1} of ${maximum+1}<button class="btn small" id="extraNext" ${extraPage>=maximum?'disabled':''}>Next →</button></div></div>`}
+function bindExtraFooter(){ $('extraPrev').onclick=()=>{extraPage--;render()};$('extraNext').onclick=()=>{extraPage++;render()} }
+function renderTalkGroups(root){
+  let all=cp.talkGroups(),found=all.filter(x=>[x.id,x.name,x.dmrId].join(' ').toLowerCase().includes(extraFilter.toLowerCase()));
+  extraPage=Math.min(extraPage,pageMax(found.length,extraPageSize));const rows=slicePage(found,extraPage,extraPageSize);
+  root.innerHTML=extraToolbar('Talk Groups',all.length)+`<div class="bar"><div class="hint">These are the ${all.length} active TX contacts, not the unused factory templates. Changing a DMR ID also updates matching RX group members.</div>${csvActions('talkgroups')}<button class="btn" id="addTalk">+ Add Talk Group</button></div>
+  <div class="panel table-scroll"><table class="tbl"><thead><tr><th>#</th><th>Name</th><th>DMR ID</th><th>Call type</th><th>Assigned channels</th><th></th></tr></thead><tbody>${rows.map(t=>`<tr class="${groupEdited(t.offset,24)?'edited':''}"><td>${t.id}${editorMark(groupEdited(t.offset,24))}</td><td><input data-tg="${t.id}" data-f="name" value="${e(t.name)}" maxlength="16" style="width:230px"></td><td><input data-tg="${t.id}" data-f="dmrId" type="number" min="1" max="16777215" value="${t.dmrId}" style="width:115px"></td><td>${choose(t.callType,callTypes,'data-tg="'+t.id+'" data-f="callType" style="width:146px"')}</td><td>${cp.channels().filter(c=>c.digital&&c.txContact===t.id).length}</td><td><button class="btn small danger" data-delete-tg="${t.id}">Delete</button></td></tr>`).join('')}</tbody></table>${extraFooter(found.length)}</div><p class="hint">An existing DMR channel can select its TX Talk Group in Channels → TX Talk Group or Details. Maximum 10 physical slots are verified in this codeplug; adding beyond those is disabled.</p>`;
+  bindExtraToolbar();bindExtraFooter();bindCsvActions(root);
+  root.querySelectorAll('[data-f]').forEach(el=>el.onchange=()=>{let id=Number(el.dataset.tg),field=el.dataset.f,value=field==='name'?el.value:Number(el.value);const r=safe(()=>cp.setTalkGroup(id,{[field]:value}));if(r!==null){refreshHeader();render();note('Talk Group #'+id+' updated')}});
+  root.querySelectorAll('[data-delete-tg]').forEach(el=>el.onclick=()=>{let id=Number(el.dataset.deleteTg),t=cp.talkGroup(id);if(!confirm('Delete Talk Group #'+id+' '+t.name+'? Later talk groups shift down. References on channels will be cleared or renumbered, and this DMR ID will be removed from RX groups unless another active group uses it.'))return;
+    const r=safe(()=>cp.deleteTalkGroup(id));if(r!==null){refreshHeader();render();note('Deleted Talk Group #'+id)}});
+  $('addTalk').onclick=()=>modal(`<h2>Add Talk Group</h2><p class="hint">Uses the next existing factory template slot. No new memory pages are generated.</p><div class="formgrid"><div class="formcell"><label>Name</label><input id="tgNewName" class="input" maxlength="16" placeholder="PT-TG123"></div><div class="formcell"><label>DMR ID (1–16777215)</label><input id="tgNewId" class="input" type="number" min="1" max="16777215"></div><div class="formcell"><label>Call type</label>${choose(4,callTypes,'id="tgNewType" class="input"')}</div></div><div class="dialogfoot"><button class="btn" data-close>Cancel</button><button class="btn primary" id="addTalkConfirm">Add Talk Group</button></div>`,close=>{$('addTalkConfirm').onclick=()=>{const r=safe(()=>cp.addTalkGroup({name:$('tgNewName').value,dmrId:Number($('tgNewId').value),callType:Number($('tgNewType').value)}));if(r!==null){close();extraFilter='';refreshHeader();render();note('Talk Group created')}}});
+}
+function renderRxGroups(root){
+ const groups=cp.rxGroups(),q=extraFilter.toLowerCase(),found=groups.filter(g=>[g.id,g.name,...g.members].join(' ').toLowerCase().includes(q));
+ extraPage=Math.min(extraPage,pageMax(found.length,extraPageSize));const selectedId=selected.rxgroups||1;const item=groups.find(g=>g.id===selectedId)||groups[0];if(item)selected.rxgroups=item.id;
+ const pool=cp.talkGroups();const memberSet=new Set(item?.members||[]);
+ root.innerHTML=extraToolbar('RX Group Lists',groups.length)+`<div class="bar"><p class="hint">Each group contains up to 32 DMR IDs. Channel references are updated when a group is deleted.</p>${csvActions('rxgroups')}<button class="btn" id="newRx">+ Add RX Group</button></div>
+ <div class="lists"><div><div class="panel listnav">${slicePage(found,extraPage,extraPageSize).map(g=>`<button class="listitem ${g.id===item?.id?'active':''} ${groupEdited(g.offset,109)?'edited':''}" data-rx="${g.id}"><span class="mono muted">#${g.id}</span><span class="grow"><strong>${e(g.name)}</strong>${editorMark(groupEdited(g.offset,109))}<small>${g.members.length} DMR ID${g.members.length!==1?'s':''}</small></span></button>`).join('')}</div>${extraFooter(found.length)}</div>
+ <section class="panel editor">${item?`<div class="listhead"><h2 style="margin:0">${e(item.name)} ${editorMark(groupEdited(item.offset,109))}</h2><button class="btn small danger" id="deleteRx">Delete RX group</button></div><div style="margin:15px 0" class="fieldline"><label for="rxName">Group name (10 chars)</label><input id="rxName" maxlength="10" class="input" value="${e(item.name)}"><button class="btn" id="saveRxName">Rename</button></div>
+ <div class="split"><div><h3>Included DMR IDs (${item.members.length}/32)</h3><div class="memberlist">${item.members.map((v,i)=>{let tg=pool.find(t=>t.dmrId===v);return `<div class="member"><span class="grow">${i+1}. <b>${e(tg?.name||'External TG')}</b> <small>${v}</small></span><button class="x" data-rx-remove="${v}">×</button></div>`}).join('')||'<div class="hint" style="padding:15px">No DMR IDs</div>'}</div><div class="fieldline" style="margin-top:12px"><input class="input" id="manualRxId" type="number" min="1" max="16777214" placeholder="DMR ID (optional)"><button class="btn small" id="manualRxAdd">Add ID</button></div></div>
+ <div><h3>Available Talk Groups</h3><div class="availablelist">${pool.filter(t=>!memberSet.has(t.dmrId)).map(t=>`<label class="candidate"><input type="checkbox" data-rx-add="${t.dmrId}" ${item.members.length>=32?'disabled':''}><span class="grow">${e(t.name)}</span><small>${t.dmrId} · ${t.callType===4?'Group':t.callType===3?'Private':'All'}</small></label>`).join('')||'<p class="hint" style="padding:13px">All known Talk Groups included</p>'}</div><p class="hint">The binary stores numeric DMR IDs, not talk-group row indices. Existing external IDs remain editable.</p></div></div>`:'<p>No active RX groups</p>'}</section></div>`;
+ bindExtraToolbar();bindExtraFooter();bindCsvActions(root);root.querySelectorAll('[data-rx]').forEach(el=>el.onclick=()=>{selected.rxgroups=Number(el.dataset.rx);render()});
+ $('newRx').onclick=()=>{let r=safe(()=>cp.addRxGroup({name:'RX-'+(cp.rxCount()+1),members:[]}));if(r!==null){selected.rxgroups=cp.rxCount();extraFilter='';refreshHeader();render();note('RX Group created')}};
+ if(!item)return;
+ $('saveRxName').onclick=()=>{let r=safe(()=>cp.setRxGroup(item.id,{name:$('rxName').value}));if(r!==null){render();note('RX group renamed')}};
+ const apply=members=>{let r=safe(()=>cp.setRxGroup(item.id,{members}));if(r!==null){render();note('RX group membership updated')}};
+ root.querySelectorAll('[data-rx-add]').forEach(el=>el.onchange=()=>apply([...item.members,Number(el.dataset.rxAdd)]));
+ root.querySelectorAll('[data-rx-remove]').forEach(el=>el.onclick=()=>apply(item.members.filter(v=>v!==Number(el.dataset.rxRemove))));
+ $('manualRxAdd').onclick=()=>{let id=Number($('manualRxId').value);if(!Number.isInteger(id)||id<1||id>=0xffffff){note('Enter a valid DMR ID',true);return}if(item.members.includes(id)){note('ID already included',true);return}apply([...item.members,id])};
+ $('deleteRx').onclick=()=>{if(!confirm('Delete RX group #'+item.id+'? Channels using it will be set to None; later group indices will shift.'))return;let r=safe(()=>cp.deleteRxGroup(item.id));if(r!==null){selected.rxgroups=Math.min(item.id,cp.rxCount());refreshHeader();render();note('RX group deleted')}};
+}
+function renderKeys(root){let state=cp.keys(),opts=globalThis.DM32Extras.FUN.map((name,i)=>[i,name]);let keyRows=[['SK1 short','sk1Short'],['SK1 long','sk1Long'],['SK2 short','sk2Short'],['SK2 long','sk2Long'],['P1 short','p1Short'],['P1 long','p1Long'],['P2 short','p2Short'],['P2 long','p2Long']];
+ const options=(key,v,label,a)=>`<div class="fieldline" style="padding:9px 0"><label for="key_${key}">${e(label)}</label>${choose(v,a,'id="key_'+key+'" class="input" style="max-width:360px"')}</div>`;
+ const bools=[[false,'Off'],[true,'On']];
+ const dirty=Object.entries(state).some(([k,v])=>{let b=cp.original,p=cp.block(0x04);if(['lockKey','knobLock','sideKeyLock'].includes(k))return ((b[p+0x85]&(k==='lockKey'?1:k==='knobLock'?2:4))!==0)!==v;if(k==='lockDelay')return b[p+0x86]!==v;if(k==='longPress')return b[p+0x93]+1!==v;let pos=globalThis.DM32Extras.KEY_FIELDS[k];return pos!==undefined?b[p+pos]!==v:false});
+ root.innerHTML=`<div class="bar"><h2>Key Settings ${dirty?editorMark(true):''}</h2><span class="hint">Matches the Baofeng CPS Key Setting dialog. Unknown flags remain unchanged.</span></div><div class="panel" style="padding:22px;max-width:800px"><h3>Lock settings</h3>
+ ${options('lockKey',state.lockKey,'Lock Key',[[false,'Manual'],[true,'Auto']])}
+ ${options('knobLock',state.knobLock,'Knob Lock',bools)}
+ ${options('sideKeyLock',state.sideKeyLock,'Side Key Lock',bools)}
+ ${options('lockDelay',state.lockDelay,'Auto Keypad Lock Delay',Array.from({length:56},(_,i)=>[i+5,String(i+5)]))}
+ ${options('longPress',state.longPress,'Long Press Time',Array.from({length:5},(_,i)=>[i+1,String(i+1)]))}
+ <h3 style="margin-top:20px">Programmable button functions</h3>
+ <div class="split"><div>${keyRows.slice(0,4).map(([label,key])=>options(key,state[key],label,opts)).join('')}</div><div>${keyRows.slice(4).map(([label,key])=>options(key,state[key],label,opts)).join('')}</div></div>
+ <div class="dialogfoot"><button class="btn primary" id="saveKeys">Apply key settings</button></div></div>`;
+ $('saveKeys').onclick=()=>{let patch={};for(const key of Object.keys(state)){let el=$('key_'+key);let v=['lockKey','knobLock','sideKeyLock'].includes(key)?el.value==='true':Number(el.value);if(v!==state[key])patch[key]=v}if(!Object.keys(patch).length){note('No settings changed');return}
+ let result=safe(()=>cp.setKeys(patch));if(result!==null){render();note(Object.keys(patch).length+' key settings updated')}};
+}
+function renderAbout(root){root.innerHTML=`<div class="panel" style="padding:22px;max-width:900px"><h2>How it works</h2><div class="helptext"><p>The browser reads your CPS .data image as a byte array and finds the known 4096-byte blocks using their logical IDs. Edits patch only the relevant bytes. No part of the file is uploaded to a server and no radio programming is attempted.</p><p><b>Bulk editing:</b> check individual channel rows, use the table header checkbox to select the current page, or select all matching channels. Editing one selected row applies only the changed field to every selected channel. The Details dialog can apply only the fields changed there to selected channels. All changes are atomic and one Undo step; mixed analog/DMR-specific edits are rejected as a group. Clear selection to return to single-channel editing.</p><p><b>Known fields:</b> channel scan-list references, names, frequencies, power, tones and DMR settings; zone and scan-list membership (15 plus the current monitored channel); active Talk Group names, DMR IDs, call types and TX assignments; DMR RX Group List names and memberships; key lock and eight programmable key assignments.</p><p><b>Limitations:</b> DMR radio ID mapping, encryption, priority scan options, and other unknown bytes are not fully editable. Talk Group add/delete is restricted to ten previously allocated physical slots (the file exposes four active groups and six factory templates); CPS compatibility of list creation/deletion has not been proven. Deletions compact records and rebase known references; channels have a separate per-channel DMR TX-contact selector table that moves with the records. Opaque bytes associated with surviving records remain attached to them. CPS can retain stale data in deleted slots; this editor clears unused slots for reuse. Scan-list internal bookkeeping is still partly undocumented and is not guaranteed byte-identical to CPS.</p><p><b>Before loading to a radio:</b> keep a backup, download the new file, reopen it in official Baofeng CPS, inspect and export channels/zones/scans, and confirm the changes. If CPS rejects or changes the file unexpectedly, do not write to the radio. A specific firmware revision is required because layouts may change.</p><p><b>Frequency and transmit settings:</b> the editor does not determine which frequencies are legal or appropriate to transmit on. Your radio hardware can also be limited independently of this codeplug.</p><p><b>Sources:</b> <a href="https://github.com/infamy/DM32-Protocol-Spec/blob/main/05-DATA-STRUCTURES.md" target="_blank" rel="noreferrer">DM32 data structures</a>, <a href="https://github.com/infamy/DM32-Protocol-Spec/blob/main/06-ENCODING.md" target="_blank" rel="noreferrer">DM32 encodings</a>, and the supplied seed and sample. Some spec statements disagree with the sample; in particular, the sample supports 16-byte zone names and has 28 scan lists.</p></div></div>`}
+function download(bytes,name,type='application/octet-stream'){const blob=new Blob([bytes],{type});let url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000)}
+function filenameBase(){return filename.replace(/\.data$/i,'').replace(/[^-\w.]/g,'_')||'dm32'}
+function timestamp(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')+'_'+[d.getHours(),d.getMinutes(),d.getSeconds()].map(n=>String(n).padStart(2,'0')).join('-')+'-'+String(d.getMilliseconds()).padStart(3,'0')}
+function save(){if(!cp)return;const issues=cp.validate();if(issues.length){modal(`<h2>Cannot export: validation errors</h2><p class="warning-text">${issues.map(e=>esc(e)).join('<br>')}</p><div class="dialogfoot"><button class="btn" data-close>Close</button></div>`);return}
+if(scanTouched&&!confirm('You changed scan-list records. Their undocumented internal fields are preserved, but scan-list encoding has not been validated in Baofeng CPS. Download for CPS verification?'))return;
+try{download(cp.save(),filenameBase()+'-'+timestamp()+'.data');note('Exported '+cp.changedBytes().toLocaleString()+' modified bytes; verify in CPS')}catch(err){note(err.message,true)}}
+function exportCsv(type){try{download(csvTool.exportCSV(cp,type),filenameBase()+'-'+type+'.csv','text/csv;charset=utf-8');note('Exported '+type+' CSV')}catch(err){note(err.message,true)}}
+function importCsv(type){
+  const label=type==='channels'?'channels':type==='zones'?'zones':'scan lists';
+  modal(`<h2>Import ${label} from CSV</h2><p class="helptext">Import a CSV exported by this app. Rows are matched by their <b>Number</b> (1-based ID); omitted rows stay unchanged. New entries can only be appended in consecutive order. Zone / scan membership uses semicolon-separated channel numbers in the <b>Channels</b> column. Unknown binary settings are preserved.</p><p class="hint">Imports are validated as one transaction. Nothing is applied if any row is invalid; import is one Undo step. Existing channel slots are never renumbered. New digital channels are not supported.</p><div class="dialogfoot"><button class="btn" data-close>Cancel</button><button class="btn primary" id="chooseCsv">Choose CSV file</button></div>`,close=>{
+    $('chooseCsv').onclick=()=>{pendingCsvType=type;$('csvFile').click();close()};
+  });
+}
+let pendingCsvType=null;
+async function readCsv(file){if(!file||!pendingCsvType)return;const type=pendingCsvType;pendingCsvType=null;
+  try{const text=await file.text(),prepared=csvTool.prepare(cp,type,text);
+    modal(`<h2>Confirm CSV import</h2><p><b>${e(file.name)}</b></p><p>Found <b>${prepared.rows}</b> records; <b>${prepared.changedRecords}</b> changed (${prepared.added} new), <b>${prepared.unchanged}</b> unchanged. Changes affect <b>${prepared.changedBytes.toLocaleString()}</b> bytes.</p><p class="hint">The original .data remains available through Reset. All fields not represented in the CSV retain their previous bytes. No missing entries are deleted.</p>${type==='scans'?'<div class="callout">Scan-list binary bookkeeping remains experimental. Check the final .data in Baofeng CPS.</div>':''}<div class="dialogfoot"><button class="btn" data-close>Cancel</button><button class="btn primary" id="confirmImport" ${prepared.changedBytes?'':'disabled'}>Apply import</button></div>`,close=>{
+      $('confirmImport').onclick=()=>{const outcome=safe(()=>{cp.bytes=prepared.bytes.slice();cp.audit.push({note:'CSV import '+type+' ('+prepared.changedRecords+' records)',bytes:prepared.changedBytes});if(type==='scans')scanTouched=true;});
+        if(outcome!==null){selectedChannels.clear();close();filter='';memberFilter='';page=0;candidatePage=0;render();note('Imported '+prepared.changedRecords+' '+type+' records')}
+      };
+    });
+  }catch(err){modal(`<h2>CSV import rejected</h2><p class="warning-text">${e(err.message)}</p><p class="hint">No changes were applied.</p><div class="dialogfoot"><button class="btn" data-close>Close</button></div>`)}
+}
+
+function showDiff(){const diffs=cp.diff(),changed=cp.changedBytes(),lines=diffs.slice(0,100).map(d=>`0x${d.start.toString(16).toUpperCase().padStart(5,'0')}–0x${d.end.toString(16).toUpperCase().padStart(5,'0')}: ${d.length} byte${d.length!==1?'s':''}`).join('\n');modal(`<h2>Byte-level changes</h2><p><b>${changed.toLocaleString()} changed bytes</b> in ${diffs.length} contiguous ranges (of ${cp.bytes.length.toLocaleString()} bytes).</p><p class="hint">If no changes were made, download is byte-for-byte identical. Unrecognized areas are never regenerated.</p><div class="panel code" style="padding:12px;max-height:320px;overflow:auto">${e(lines||'No byte differences.')}${diffs.length>100?'\n…': ''}</div><div class="dialogfoot"><button class="btn" id="jsonDiff">Export JSON diff</button><button class="btn" data-close>Close</button></div>`,()=>{$('jsonDiff').onclick=()=>{const report={originalFile:filename,firmware:cp.firmware,byteCount:cp.bytes.length,changes:diffs.map(d=>({offset:d.start,length:d.length,before:[...d.from],after:[...d.to]})),audit:cp.audit};download(JSON.stringify(report,null,2),filenameBase()+'-diff.json','application/json')}})}
+$('openBtn').onclick=()=>$('file').click();$('drop').onclick=()=>$('file').click();$('file').onchange=ev=>{load(ev.target.files[0]);ev.target.value=''};
+$('saveBtn').onclick=save;$('focusSave').onclick=save;$('diffBtn').onclick=showDiff;$('csvFile').onchange=ev=>{readCsv(ev.target.files[0]);ev.target.value=''};
+$('undoBtn').onclick=()=>{if(!history.length)return;const h=history.pop();cp.bytes=h.old;cp.audit=h.audit;scanTouched=h.oldScan;selectedChannels=new Set([...selectedChannels].filter(n=>n<=cp.channelCount));refreshHeader();render();note('Undid last edit')};
+$('resetBtn').onclick=()=>{if(!confirm('Discard every change and return to the original loaded file?'))return;cp.reset();history=[];selectedChannels.clear();scanTouched=false;refreshHeader();render();note('Reset to original file')};
+function setFocus(on){focusMode=on;document.body.classList.toggle('focus',on);$('focusToggle').textContent=on?'Show header':'Hide header · Focus mode'}
+$('focusToggle').onclick=()=>setFocus(true);$('focusExit').onclick=()=>setFocus(false);$('focusView').onchange=ev=>{active=ev.target.value;memberFilter='';candidatePage=0;extraFilter='';extraPage=0;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===active));render()};
+$('themeBtn').onclick=()=>document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';
+document.querySelectorAll('.tab').forEach(el=>el.onclick=()=>{active=el.dataset.tab;memberFilter='';candidatePage=0;extraFilter='';extraPage=0;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t===el));render()});
+document.addEventListener('dragover',ev=>{if(ev.dataTransfer?.types.includes('Files')){ev.preventDefault();$('drop').classList.add('over')}});document.addEventListener('dragleave',ev=>{if(ev.target===$('drop'))$('drop').classList.remove('over')});document.addEventListener('drop',ev=>{if(ev.dataTransfer?.files?.length){ev.preventDefault();$('drop').classList.remove('over');load(ev.dataTransfer.files[0])}});
+})();
+
+</script></body></html>
