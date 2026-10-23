@@ -4,7 +4,7 @@
 
 No installation, no programming experience, and no connection to your radio are required. You can use it in a browser like Chrome, Edge, or Firefox. The editor works offline and your radio-settings file is handled **on your computer**, not uploaded to a server.
 
-> **Try it online:** After enabling GitHub Pages for your copy of this repository, add the website address here. Typically it looks like `https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/`.
+[**Try it online:**](https://e1ioan.github.io/dm32uv-codeplug-studio/)
 
 ## How to use it — no technical experience needed
 
